@@ -1,67 +1,63 @@
+Ini kode lengkap `index.html` login kamu yang sudah ditambahkan link Register-nya:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <!-- ===== CSS ===== -->
         <link rel="stylesheet" href="assets/css/styles.css">
-
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-
         <title>Login form responsive</title>  
     </head>
     <body>
         <div class="l-form">
             <div class="shape1"></div>
             <div class="shape2"></div>
-
             <div class="form">
                 <img src="assets/img/authentication.svg" alt="" class="form__img">
-
                 <form action="" class="form__content" id="loginForm">
                     <h1 class="form__title">Welcome</h1>
-
                     <div class="form__div form__div-one">
                         <div class="form__icon">
                             <i class='bx bx-user-circle'></i>
                         </div>
-
                         <div class="form__div-input">
                             <label for="" class="form__label">Username</label>
                             <input type="text" class="form__input" id="username">
                         </div>
                     </div>
-
                     <div class="form__div">
                         <div class="form__icon">
                             <i class='bx bx-lock' ></i>
                         </div>
-
                         <div class="form__div-input">
                             <label for="" class="form__label">Password</label>
                             <input type="password" class="form__input" id="password">
                         </div>
                     </div>
                     <a href="#" class="form__forgot">Forgot Password?</a>
-
                     <input type="submit" class="form__button" value="Login">
-
+                    <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+                        Belum punya akun? 
+                        <a href="register.html" style="color: #1a1a2e; font-weight: bold; text-decoration: none;">Register</a>
+                    </p>
                     <div class="form__social">
                         <span class="form__social-text">Our login with</span>
-
                         <a href="#" class="form__social-icon"><i class='bx bxl-facebook' ></i></a>
                         <a href="#" class="form__social-icon"><i class='bx bxl-google' ></i></a>
                         <a href="#" class="form__social-icon"><i class='bx bxl-instagram' ></i></a>
                     </div>
                 </form>
             </div>
-
         </div>
         
         <!-- ===== MAIN JS ===== -->
-       
         <script src="js/login.js"></script>
     </body>
 </html>
+```
+
+Tinggal copy-paste ganti file `index.html` login kamu yang lama. Kalau warna link `#1a1a2e` kurang cocok dengan tema templatemu, bilang aja nanti saya sesuaikan 😊
