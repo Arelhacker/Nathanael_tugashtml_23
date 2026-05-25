@@ -19,7 +19,7 @@ Free HTML CSS Template
 -->
 </head>
 <body>
-    <header>
+       <header>
         <a href="#work" class="logo">
             <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="45" fill="none" stroke="#ff3366" stroke-width="3"/>
@@ -35,22 +35,22 @@ Free HTML CSS Template
                 <li><a href="#services">Services</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-				<p id="userInfo">Belum login</p>
-				<div id="authArea">
-    <button onclick="goLogin()" class="nav-cta">
-        Login
-    </button>
-
-    <button class="nav-cta">
-        <a href="login/register.html">Register</a>
-    </button>
-</div>
+                <li>
+                    <span id="userInfo" style="color: white; font-size: 14px;">Belum login</span>
+                </li>
+                <li>
+                    <div id="authArea" style="display: flex; gap: 8px; align-items: center;">
+                        <button onclick="goLogin()" class="nav-cta">Login</button>
+                        <button onclick="window.location.href='login/register.html'" class="nav-cta">Register</button>
+                    </div>
+                </li>
             </ul>
         </nav>
         <div class="menu-icon">
             <span></span>
         </div>
     </header>
+   
 
     <div class="mobile-nav">
         <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
