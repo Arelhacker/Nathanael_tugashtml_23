@@ -1,92 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="assets/css/styles.css">
-
     <!-- ===== BOX ICONS ===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-
     <title>Register Form</title>
 </head>
-
 <body>
     <div class="l-form">
         <div class="shape1"></div>
         <div class="shape2"></div>
-
         <div class="form">
             <img src="assets/img/authentication.svg" alt="" class="form__img">
-
-            <form action="" class="form__content">
-
+            <form action="" class="form__content" id="registerForm">
                 <h1 class="form__title">Register</h1>
-
                 <!-- Username -->
-                <div class="form_div form_div-one">
+                <div class="form__div form__div-one">
                     <div class="form__icon">
                         <i class='bx bx-user-circle'></i>
                     </div>
-
                     <div class="form__div-input">
                         <label class="form__label">Username</label>
-                        <input type="text" class="form__input">
+                        <input type="text" class="form__input" id="username">
                     </div>
                 </div>
-
                 <!-- Email -->
                 <div class="form__div">
                     <div class="form__icon">
                         <i class='bx bx-envelope'></i>
                     </div>
-
                     <div class="form__div-input">
                         <label class="form__label">Email</label>
-                        <input type="email" class="form__input">
+                        <input type="email" class="form__input" id="email">
                     </div>
                 </div>
-
                 <!-- Password -->
                 <div class="form__div">
                     <div class="form__icon">
                         <i class='bx bx-lock'></i>
                     </div>
-
                     <div class="form__div-input">
                         <label class="form__label">Password</label>
-                        <input type="password" class="form__input">
+                        <input type="password" class="form__input" id="password">
                     </div>
                 </div>
-
                 <!-- Confirm Password -->
                 <div class="form__div">
                     <div class="form__icon">
                         <i class='bx bx-lock'></i>
                     </div>
-
                     <div class="form__div-input">
                         <label class="form__label">Confirm Password</label>
-                        <input type="password" class="form__input">
+                        <input type="password" class="form__input" id="confirmPassword">
                     </div>
                 </div>
-
                 <!-- Button -->
                 <input type="submit" class="form__button" value="Register">
-
                 <!-- Link Login -->
-                <p style="text-align:center; margin-top:10px;">
-                    Sudah punya akun?
-                    <a href="index.html">Login</a>
+                <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+                    Sudah punya akun? 
+                    <a href="index.html" style="color: #1a1a2e; font-weight: bold; text-decoration: none;">Login</a>
                 </p>
-
             </form>
         </div>
     </div>
-
     <!-- ===== MAIN JS ===== -->
-    <script src="js/login.js"></script>
+    <script src="js/register.js"></script>
 </body>
 </html>
+```
+
