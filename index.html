@@ -138,8 +138,46 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 <body>
 
 <div class="topbar">
-  <div class="topbar-logo">Delayota <span>Banking</span></div>
+
+  <div class="topbar-logo">
+    Delayota <span>Banking</span>
+  </div>
+
   <div class="topbar-user">
+
+    <!-- MENU SEBELUM LOGIN -->
+    <div id="guestMenu">
+
+      <button onclick="window.location.href='login/index.html'" class="top-btn">
+        Login
+      </button>
+
+      <button onclick="window.location.href='login/register.html'" class="top-btn register">
+        Register
+      </button>
+
+    </div>
+
+    <!-- MENU SETELAH LOGIN -->
+    <div id="userMenu" style="display:none; align-items:center; gap:12px;">
+
+      <span style="color:rgba(255,255,255,0.7);font-size:12px">
+        Selamat datang,
+      </span>
+
+      <strong id="usernameDisplay"></strong>
+
+      <div class="avatar" id="avatarDisplay"></div>
+
+      <button onclick="logout()" class="top-btn">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
   <button onclick="window.location.href='login/index.html'" class="top-btn">
     Login
