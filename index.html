@@ -3,828 +3,701 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Delayota Banking</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --blue-50:#e6f1fb;--blue-100:#b5d4f4;--blue-200:#85b7eb;--blue-400:#378add;--blue-600:#185fa5;--blue-800:#0c447c;--blue-900:#042c53;
-  --bg:#f0f4f8;--white:#ffffff;--text:#0c1a2e;--muted:#5a7080;--border:#dce6ee;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* TOP BAR */
-.topbar{background:var(--blue-900);color:#fff;padding:10px 24px;display:flex;justify-content:space-between;align-items:center}
-.topbar-logo{font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#fff}
-.topbar-logo span{color:var(--blue-200)}
-.topbar-user{display:flex;align-items:center;gap:12px;font-size:13px}
-.avatar{width:34px;height:34px;border-radius:50%;background:var(--blue-400);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
+:root{
+  --blue-50:#e6f1fb;
+  --blue-100:#b5d4f4;
+  --blue-200:#85b7eb;
+  --blue-400:#378add;
+  --blue-600:#185fa5;
+  --blue-800:#0c447c;
+  --blue-900:#042c53;
 
-/* MAIN LAYOUT */
-.app{display:flex;min-height:calc(100vh - 46px)}
+  --bg:#f0f4f8;
+  --white:#ffffff;
+  --text:#0c1a2e;
+  --muted:#5a7080;
+  --border:#dce6ee;
+}
 
-/* SIDEBAR */
-.sidebar{width:220px;background:var(--white);border-right:1px solid var(--border);padding:20px 0;flex-shrink:0}
-.nav-section{padding:0 12px;margin-bottom:8px}
-.nav-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:0 12px;margin-bottom:6px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);transition:all .15s;margin-bottom:2px}
-.nav-item:hover{background:var(--blue-50);color:var(--blue-600)}
-.nav-item.active{background:var(--blue-50);color:var(--blue-800);font-weight:600}
-.nav-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.nav-item.active .nav-icon{background:var(--blue-400);color:#fff}
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
 
-/* CONTENT */
-.content{flex:1;padding:24px;overflow-y:auto}
+/* ================= TOPBAR ================= */
 
-/* SECTION */
-.section{display:none}
-.section.active{display:block}
+.topbar{
+    background:var(--blue-900);
+    color:#fff;
+    padding:12px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-/* CARDS */
-.card{background:var(--white);border-radius:16px;border:1px solid var(--border);padding:20px}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.topbar-logo{
+    font-size:22px;
+    font-weight:800;
+}
 
-/* SALDO UTAMA */
-.saldo-card{background:linear-gradient(135deg,var(--blue-800),var(--blue-600));border-radius:20px;padding:24px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px}
-.saldo-card::after{content:'';position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.07)}
-.saldo-label{font-size:12px;opacity:.8;margin-bottom:6px;font-weight:500}
-.saldo-amount{font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:16px}
-.saldo-meta{display:flex;gap:24px;font-size:12px;opacity:.85}
-.saldo-meta span{font-weight:600}
+.topbar-logo span{
+    color:var(--blue-200);
+}
 
-/* QUICK ACTIONS */
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.quick-btn{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
-.quick-btn:hover{border-color:var(--blue-400);background:var(--blue-50);transform:translateY(-2px)}
-.quick-btn-icon{width:44px;height:44px;border-radius:12px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;font-size:20px}
-.quick-btn-label{font-size:11px;font-weight:600;color:var(--text);text-align:center}
+.topbar-user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
 
-/* STAT MINI */
-.stat-mini{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px}
-.stat-mini-label{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:6px}
-.stat-mini-val{font-size:22px;font-weight:800;color:var(--blue-800)}
-.stat-mini-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.top-btn{
+    background:#378add;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
 
-/* TRANSAKSI */
-.tx-list{display:flex;flex-direction:column;gap:1px}
-.tx-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
-.tx-item:last-child{border-bottom:none}
-.tx-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.tx-icon.in{background:#eaf3de;color:#3b6d11}
-.tx-icon.out{background:#fcebeb;color:#a32d2d}
-.tx-icon.bill{background:var(--blue-50);color:var(--blue-600)}
-.tx-info{flex:1}
-.tx-name{font-size:13px;font-weight:600;color:var(--text)}
-.tx-date{font-size:11px;color:var(--muted);margin-top:2px}
-.tx-amount{font-size:14px;font-weight:700}
-.tx-amount.in{color:#3b6d11}
-.tx-amount.out{color:#a32d2d}
+.top-btn.register{
+    background:#185fa5;
+}
 
-/* FORM */
-.form-group{margin-bottom:16px}
-.form-label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
-.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;font-size:14px;color:var(--text);background:var(--white);transition:border .15s;outline:none}
-.form-input:focus{border-color:var(--blue-400)}
-.form-input:disabled{background:var(--bg);color:var(--muted)}
-.btn{padding:13px 24px;border-radius:10px;border:none;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;width:100%}
-.btn-primary{background:var(--blue-600);color:#fff}
-.btn-primary:hover{background:var(--blue-800)}
-.btn-sm{width:auto;padding:8px 16px;font-size:12px}
+.top-btn:hover{
+    opacity:.9;
+}
 
-/* REKSA DANA */
-.rd-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .15s}
-.rd-card:hover{border-color:var(--blue-400);background:var(--blue-50)}
-.rd-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.rd-info{flex:1}
-.rd-name{font-size:13px;font-weight:700;color:var(--text)}
-.rd-type{font-size:11px;color:var(--muted);margin-top:2px}
-.rd-return{text-align:right}
-.rd-pct{font-size:16px;font-weight:800;color:#3b6d11}
-.rd-period{font-size:10px;color:var(--muted)}
+.avatar{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#378add;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:white;
+}
 
-/* TAGIHAN */
-.tagihan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.tagihan-btn{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
-.tagihan-btn:hover{border-color:var(--blue-400);background:var(--blue-50)}
-.tagihan-btn-icon{font-size:28px}
-.tagihan-btn-label{font-size:12px;font-weight:600;color:var(--text)}
+/* ================= APP ================= */
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:100}
-.modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:380px}
-.modal-title{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--blue-900)}
-.modal-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
+.app{
+    display:flex;
+    min-height:calc(100vh - 60px);
+}
 
-/* NOTIF */
-.notif{position:fixed;top:20px;right:20px;background:var(--blue-800);color:#fff;padding:14px 20px;border-radius:12px;font-size:13px;font-weight:600;z-index:200;display:none;animation:slideIn .3s ease}
-@keyframes slideIn{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
+/* ================= SIDEBAR ================= */
 
-/* HEADER ROW */
-.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.section-title{font-size:18px;font-weight:800;color:var(--blue-900)}
-.section-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.sidebar{
+    width:220px;
+    background:white;
+    border-right:1px solid var(--border);
+    padding:20px 0;
+}
 
-/* BADGE */
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.badge-blue{background:var(--blue-50);color:var(--blue-800)}
-.badge-green{background:#eaf3de;color:#3b6d11}
+.nav-label{
+    font-size:11px;
+    color:var(--muted);
+    font-weight:700;
+    margin:14px 20px 8px;
+}
 
-/* PROGRESS */
-.progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;margin-top:8px}
-.progress-fill{height:100%;background:var(--blue-400);border-radius:4px}
+.nav-item{
+    padding:12px 20px;
+    cursor:pointer;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-size:14px;
+    transition:.2s;
+}
+
+.nav-item:hover{
+    background:var(--blue-50);
+}
+
+.nav-item.active{
+    background:var(--blue-50);
+    color:var(--blue-800);
+    font-weight:700;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    flex:1;
+    padding:24px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+/* ================= SALDO ================= */
+
+.saldo-card{
+    background:linear-gradient(135deg,var(--blue-800),var(--blue-600));
+    color:white;
+    padding:28px;
+    border-radius:20px;
+    margin-bottom:24px;
+}
+
+.saldo-label{
+    font-size:13px;
+    opacity:.8;
+}
+
+.saldo-amount{
+    font-size:36px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    border:1px solid var(--border);
+    padding:20px;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    margin-bottom:20px;
+}
+
+.stat-mini{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+}
+
+.stat-mini-label{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.stat-mini-val{
+    font-size:24px;
+    font-weight:800;
+    margin-top:8px;
+}
+
+.stat-mini-sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:6px;
+}
+
+/* ================= QUICK MENU ================= */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.quick-btn{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px;
+    cursor:pointer;
+    text-align:center;
+    transition:.2s;
+}
+
+.quick-btn:hover{
+    background:var(--blue-50);
+}
+
+.quick-btn-icon{
+    font-size:28px;
+}
+
+.quick-btn-label{
+    margin-top:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* ================= TRANSAKSI ================= */
+
+.tx-list{
+    margin-top:12px;
+}
+
+.tx-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.tx-name{
+    font-size:14px;
+    font-weight:700;
+}
+
+.tx-date{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.tx-amount{
+    font-weight:700;
+}
+
+.in{
+    color:green;
+}
+
+.out{
+    color:red;
+}
+
+/* ================= NOTIF ================= */
+
+.notif{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:var(--blue-800);
+    color:white;
+    padding:14px 20px;
+    border-radius:10px;
+    display:none;
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- ================= TOPBAR ================= -->
+
 <div class="topbar">
-  <div class="topbar-logo">Delayota <span>Banking</span></div>
-  <div class="topbar-user">
-    <span style="color:rgba(255,255,255,0.7);font-size:12px">Selamat datang,</span>
-    <strong>Nathanael Arvin</strong>
-    <div class="avatar">NA</div>
-  </div>
+
+    <div class="topbar-logo">
+        Delayota <span>Banking</span>
+    </div>
+
+    <div class="topbar-user">
+
+        <!-- sebelum login -->
+        <div id="guestMenu">
+
+            <button onclick="window.location.href='login/index.html'" class="top-btn">
+                Login
+            </button>
+
+            <button onclick="window.location.href='login/register.html'" class="top-btn register">
+                Register
+            </button>
+
+        </div>
+
+        <!-- sesudah login -->
+        <div id="userMenu" style="display:none;align-items:center;gap:12px;">
+
+            <span style="font-size:13px;color:rgba(255,255,255,.7)">
+                Selamat datang,
+            </span>
+
+            <strong id="usernameDisplay"></strong>
+
+            <div class="avatar" id="avatarDisplay"></div>
+
+            <button onclick="logout()" class="top-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
+
+<!-- ================= APP ================= -->
 
 <div class="app">
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="nav-section">
-      <div class="nav-label">Menu Utama</div>
-      <div class="nav-item active" onclick="showSection('beranda')">
-        <div class="nav-icon">🏠</div> Beranda
-      </div>
-      <div class="nav-item" onclick="showSection('transfer')">
-        <div class="nav-icon">💸</div> Transfer
-      </div>
-      <div class="nav-item" onclick="showSection('topup')">
-        <div class="nav-icon">➕</div> Top Up
-      </div>
-      <div class="nav-item" onclick="showSection('tarik')">
-        <div class="nav-icon">🏧</div> Tarik Tunai
-      </div>
-    </div>
-    <div class="nav-section">
-      <div class="nav-label">Investasi</div>
-      <div class="nav-item" onclick="showSection('reksadana')">
-        <div class="nav-icon">📈</div> Reksa Dana
-      </div>
-      <div class="nav-item" onclick="showSection('tabungan')">
-        <div class="nav-icon">🏦</div> Tabungan Emas
-      </div>
-    </div>
-    <div class="nav-section">
-      <div class="nav-label">Pembayaran</div>
-      <div class="nav-item" onclick="showSection('tagihan')">
-        <div class="nav-icon">🧾</div> Bayar Tagihan
-      </div>
-      <div class="nav-item" onclick="showSection('riwayat')">
-        <div class="nav-icon">📋</div> Riwayat
-      </div>
-    </div>
-  </div>
 
-  <!-- CONTENT -->
-  <div class="content">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
 
-    <!-- BERANDA -->
-    <div class="section active" id="sec-beranda">
-      <div class="saldo-card">
-        <div class="saldo-label">Total Saldo Aktif</div>
-        <div class="saldo-amount" id="saldo-display">Rp 2.450.000</div>
-        <div class="saldo-meta">
-          <div>No. Rekening <span>4501-2345-6789</span></div>
-          <div>BIC <span>DLYTIDJA</span></div>
-        </div>
-      </div>
+        <div class="nav-label">MENU</div>
 
-      <div class="card-grid">
-        <div class="stat-mini">
-          <div class="stat-mini-label">Pemasukan Bulan Ini</div>
-          <div class="stat-mini-val">Rp 1.200.000</div>
-          <div class="stat-mini-sub">↑ 12% dari bulan lalu</div>
+        <div class="nav-item active" onclick="showSection('beranda')">
+            🏠 Beranda
         </div>
-        <div class="stat-mini">
-          <div class="stat-mini-label">Pengeluaran Bulan Ini</div>
-          <div class="stat-mini-val">Rp 580.000</div>
-          <div class="stat-mini-sub">↓ 5% dari bulan lalu</div>
-        </div>
-        <div class="stat-mini">
-          <div class="stat-mini-label">Investasi Aktif</div>
-          <div class="stat-mini-val">Rp 500.000</div>
-          <div class="stat-mini-sub">Reksa Dana + Emas</div>
-        </div>
-        <div class="stat-mini">
-          <div class="stat-mini-label">Tagihan Jatuh Tempo</div>
-          <div class="stat-mini-val">2 Tagihan</div>
-          <div class="stat-mini-sub">Listrik & Internet</div>
-        </div>
-      </div>
 
-      <div class="quick-grid">
-        <div class="quick-btn" onclick="showSection('transfer')">
-          <div class="quick-btn-icon">💸</div>
-          <div class="quick-btn-label">Transfer</div>
+        <div class="nav-item" onclick="showSection('transfer')">
+            💸 Transfer
         </div>
-        <div class="quick-btn" onclick="showSection('topup')">
-          <div class="quick-btn-icon">➕</div>
-          <div class="quick-btn-label">Top Up</div>
-        </div>
-        <div class="quick-btn" onclick="showSection('tagihan')">
-          <div class="quick-btn-icon">⚡</div>
-          <div class="quick-btn-label">Bayar Listrik</div>
-        </div>
-        <div class="quick-btn" onclick="showSection('reksadana')">
-          <div class="quick-btn-icon">📈</div>
-          <div class="quick-btn-label">Reksa Dana</div>
-        </div>
-        <div class="quick-btn" onclick="showSection('tarik')">
-          <div class="quick-btn-icon">🏧</div>
-          <div class="quick-btn-label">Tarik Tunai</div>
-        </div>
-        <div class="quick-btn" onclick="showSection('tabungan')">
-          <div class="quick-btn-icon">🥇</div>
-          <div class="quick-btn-label">Tabungan Emas</div>
-        </div>
-        <div class="quick-btn">
-          <div class="quick-btn-icon">📱</div>
-          <div class="quick-btn-label">Pulsa & Data</div>
-        </div>
-        <div class="quick-btn">
-          <div class="quick-btn-icon">🎓</div>
-          <div class="quick-btn-label">Bayar SPP</div>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="section-header">
-          <div>
-            <div class="section-title">Transaksi Terbaru</div>
-            <div class="section-sub">5 transaksi terakhir</div>
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="showSection('riwayat')">Lihat Semua</button>
+        <div class="nav-item" onclick="showSection('topup')">
+            ➕ Top Up
         </div>
-        <div class="tx-list" id="tx-home"></div>
-      </div>
+
+        <div class="nav-item" onclick="showSection('riwayat')">
+            📋 Riwayat
+        </div>
+
     </div>
 
-    <!-- TRANSFER -->
-    <div class="section" id="sec-transfer">
-      <div class="section-header">
-        <div>
-          <div class="section-title">Transfer Dana</div>
-          <div class="section-sub">Kirim uang ke rekening manapun</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div class="card">
-          <div class="form-group">
-            <label class="form-label">Bank Tujuan</label>
-            <select class="form-input">
-              <option>Delayota Banking</option>
-              <option>Bank BCA</option>
-              <option>Bank Mandiri</option>
-              <option>Bank BNI</option>
-              <option>Bank BRI</option>
-              <option>Bank CIMB Niaga</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">No. Rekening Tujuan</label>
-            <input class="form-input" type="text" placeholder="Masukkan nomor rekening" id="tf-norek">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Nama Penerima</label>
-            <input class="form-input" type="text" id="tf-nama" placeholder="Akan terisi otomatis" disabled>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Jumlah Transfer (Rp)</label>
-            <input class="form-input" type="number" placeholder="Contoh: 250000" id="tf-jumlah">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Catatan (opsional)</label>
-            <input class="form-input" type="text" placeholder="Contoh: bayar utang" id="tf-catatan">
-          </div>
-          <button class="btn btn-primary" onclick="doTransfer()">Lanjutkan Transfer →</button>
-        </div>
-        <div>
-          <div class="card" style="margin-bottom:14px">
-            <div class="section-title" style="font-size:14px;margin-bottom:12px">Transfer Cepat</div>
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <div class="tx-item" style="cursor:pointer" onclick="fillTransfer('Rizky Pratama','4501-1111-2222')">
-                <div class="tx-icon bill">👤</div>
-                <div class="tx-info"><div class="tx-name">Rizky Pratama</div><div class="tx-date">4501-1111-2222</div></div>
-                <span style="font-size:11px;color:var(--blue-600);font-weight:700">Pilih</span>
-              </div>
-              <div class="tx-item" style="cursor:pointer" onclick="fillTransfer('Budi Santoso','4501-3333-4444')">
-                <div class="tx-icon bill">👤</div>
-                <div class="tx-info"><div class="tx-name">Budi Santoso</div><div class="tx-date">4501-3333-4444</div></div>
-                <span style="font-size:11px;color:var(--blue-600);font-weight:700">Pilih</span>
-              </div>
-              <div class="tx-item" style="cursor:pointer;border:none" onclick="fillTransfer('Dewi Anggraeni','4501-5555-6666')">
-                <div class="tx-icon bill">👤</div>
-                <div class="tx-info"><div class="tx-name">Dewi Anggraeni</div><div class="tx-date">4501-5555-6666</div></div>
-                <span style="font-size:11px;color:var(--blue-600);font-weight:700">Pilih</span>
-              </div>
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- BERANDA -->
+        <div class="section active" id="sec-beranda">
+
+            <div class="saldo-card">
+
+                <div class="saldo-label">
+                    Total Saldo
+                </div>
+
+                <div class="saldo-amount" id="saldo-display">
+                    Rp 2.450.000
+                </div>
+
             </div>
-          </div>
-          <div class="card">
-            <div class="section-title" style="font-size:14px;margin-bottom:8px">Batas Transfer Harian</div>
-            <div style="font-size:22px;font-weight:800;color:var(--blue-800)">Rp 5.000.000</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">Sudah digunakan: Rp 350.000</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:7%"></div></div>
-          </div>
+
+            <div class="card-grid">
+
+                <div class="stat-mini">
+                    <div class="stat-mini-label">Pemasukan</div>
+                    <div class="stat-mini-val">Rp 1.200.000</div>
+                    <div class="stat-mini-sub">bulan ini</div>
+                </div>
+
+                <div class="stat-mini">
+                    <div class="stat-mini-label">Pengeluaran</div>
+                    <div class="stat-mini-val">Rp 580.000</div>
+                    <div class="stat-mini-sub">bulan ini</div>
+                </div>
+
+            </div>
+
+            <div class="quick-grid">
+
+                <div class="quick-btn" onclick="showSection('transfer')">
+                    <div class="quick-btn-icon">💸</div>
+                    <div class="quick-btn-label">Transfer</div>
+                </div>
+
+                <div class="quick-btn" onclick="showSection('topup')">
+                    <div class="quick-btn-icon">➕</div>
+                    <div class="quick-btn-label">Top Up</div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Transaksi Terbaru</h3>
+
+                <div class="tx-list" id="tx-home"></div>
+
+            </div>
+
         </div>
-      </div>
+
+        <!-- TRANSFER -->
+        <div class="section" id="sec-transfer">
+
+            <div class="card">
+
+                <h2 style="margin-bottom:18px">
+                    Transfer Dana
+                </h2>
+
+                <input type="text" id="tf-nama"
+                placeholder="Nama penerima"
+                style="width:100%;padding:12px;margin-bottom:12px">
+
+                <input type="number" id="tf-jumlah"
+                placeholder="Jumlah transfer"
+                style="width:100%;padding:12px;margin-bottom:12px">
+
+                <button onclick="doTransfer()" class="top-btn">
+                    Transfer
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- TOPUP -->
+        <div class="section" id="sec-topup">
+
+            <div class="card">
+
+                <h2 style="margin-bottom:18px">
+                    Top Up Saldo
+                </h2>
+
+                <input type="number" id="tu-jumlah"
+                placeholder="Jumlah top up"
+                style="width:100%;padding:12px;margin-bottom:12px">
+
+                <button onclick="doTopup()" class="top-btn">
+                    Top Up
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIWAYAT -->
+        <div class="section" id="sec-riwayat">
+
+            <div class="card">
+
+                <h2 style="margin-bottom:18px">
+                    Riwayat Transaksi
+                </h2>
+
+                <div class="tx-list" id="tx-all"></div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- TOP UP -->
-    <div class="section" id="sec-topup">
-      <div class="section-header">
-        <div class="section-title">Top Up Saldo</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div class="card">
-          <div class="form-group">
-            <label class="form-label">Metode Top Up</label>
-            <select class="form-input">
-              <option>Transfer Bank</option>
-              <option>Indomaret / Alfamart</option>
-              <option>ATM Bersama</option>
-              <option>Virtual Account</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Jumlah Top Up (Rp)</label>
-            <input class="form-input" type="number" placeholder="Minimum Rp 10.000" id="tu-jumlah">
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
-            <button class="btn btn-primary btn-sm" onclick="setTopup(50000)">50rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTopup(100000)">100rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTopup(250000)">250rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTopup(500000)">500rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTopup(1000000)">1jt</button>
-            <button class="btn btn-primary btn-sm" onclick="setTopup(2000000)">2jt</button>
-          </div>
-          <button class="btn btn-primary" onclick="doTopup()">Top Up Sekarang</button>
-        </div>
-        <div class="card">
-          <div class="section-title" style="font-size:14px;margin-bottom:12px">Nomor Virtual Account</div>
-          <div style="background:var(--bg);border-radius:10px;padding:16px;text-align:center;margin-bottom:14px">
-            <div style="font-size:12px;color:var(--muted);margin-bottom:6px">VA Delayota Banking</div>
-            <div style="font-size:22px;font-weight:800;color:var(--blue-800);letter-spacing:2px">4501 2345 6789</div>
-          </div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.7">
-            ✅ Transfer ke nomor VA di atas<br>
-            ✅ Saldo otomatis masuk dalam 5 menit<br>
-            ✅ Berlaku untuk semua bank
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TARIK TUNAI -->
-    <div class="section" id="sec-tarik">
-      <div class="section-header">
-        <div class="section-title">Tarik Tunai</div>
-        <div class="section-sub">Tanpa kartu ATM</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div class="card">
-          <div class="form-group">
-            <label class="form-label">Jumlah Penarikan (Rp)</label>
-            <input class="form-input" type="number" placeholder="Minimum Rp 50.000" id="tt-jumlah">
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px">
-            <button class="btn btn-primary btn-sm" onclick="setTarik(100000)">100rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTarik(200000)">200rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTarik(300000)">300rb</button>
-            <button class="btn btn-primary btn-sm" onclick="setTarik(500000)">500rb</button>
-          </div>
-          <button class="btn btn-primary" onclick="doTarik()">Buat Kode Penarikan</button>
-        </div>
-        <div class="card" id="kode-tarik-card" style="display:none">
-          <div style="text-align:center">
-            <div style="font-size:14px;color:var(--muted);margin-bottom:8px">Kode Penarikan</div>
-            <div style="font-size:40px;font-weight:800;color:var(--blue-800);letter-spacing:6px" id="kode-tarik">-</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:8px">Berlaku 30 menit</div>
-            <div style="margin-top:14px;font-size:13px;color:var(--text)">Tunjukkan kode ini di ATM Delayota Banking terdekat</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- REKSA DANA -->
-    <div class="section" id="sec-reksadana">
-      <div class="section-header">
-        <div>
-          <div class="section-title">Reksa Dana</div>
-          <div class="section-sub">Investasi mulai dari Rp 10.000</div>
-        </div>
-      </div>
-      <div class="card-grid">
-        <div class="stat-mini"><div class="stat-mini-label">Total Investasi</div><div class="stat-mini-val">Rp 500.000</div><div class="stat-mini-sub">3 produk aktif</div></div>
-        <div class="stat-mini"><div class="stat-mini-label">Keuntungan</div><div class="stat-mini-val" style="color:#3b6d11">+Rp 32.500</div><div class="stat-mini-sub">+6.5% total</div></div>
-        <div class="stat-mini"><div class="stat-mini-label">Return Terbaik</div><div class="stat-mini-val">12.4%</div><div class="stat-mini-sub">Delayota Saham Unggulan</div></div>
-      </div>
-      <div class="card">
-        <div class="section-title" style="font-size:15px;margin-bottom:14px">Pilih Produk Reksa Dana</div>
-        <div class="rd-card" onclick="openRD('Delayota Pasar Uang','Pasar Uang','6.2','Rendah')">
-          <div class="rd-badge" style="background:#eaf3de">💵</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Pasar Uang</div>
-            <div class="rd-type">Pasar Uang · Risiko Rendah</div>
-          </div>
-          <div class="rd-return"><div class="rd-pct">+6.2%</div><div class="rd-period">per tahun</div></div>
-        </div>
-        <div class="rd-card" onclick="openRD('Delayota Obligasi Negara','Obligasi','8.7','Sedang')">
-          <div class="rd-badge" style="background:var(--blue-50)">📜</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Obligasi Negara</div>
-            <div class="rd-type">Obligasi · Risiko Sedang</div>
-          </div>
-          <div class="rd-return"><div class="rd-pct">+8.7%</div><div class="rd-period">per tahun</div></div>
-        </div>
-        <div class="rd-card" onclick="openRD('Delayota Saham Unggulan','Saham','12.4','Tinggi')">
-          <div class="rd-badge" style="background:#faeeda">📊</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Saham Unggulan</div>
-            <div class="rd-type">Saham · Risiko Tinggi</div>
-          </div>
-          <div class="rd-return"><div class="rd-pct">+12.4%</div><div class="rd-period">per tahun</div></div>
-        </div>
-        <div class="rd-card" onclick="openRD('Delayota Campuran','Campuran','9.8','Sedang')">
-          <div class="rd-badge" style="background:#fcebeb">🥗</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Campuran</div>
-            <div class="rd-type">Campuran · Risiko Sedang</div>
-          </div>
-          <div class="rd-return"><div class="rd-pct">+9.8%</div><div class="rd-period">per tahun</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TABUNGAN EMAS -->
-    <div class="section" id="sec-tabungan">
-      <div class="section-header">
-        <div class="section-title">Tabungan Emas</div>
-        <div class="section-sub">Investasi emas digital mulai 0.01 gram</div>
-      </div>
-      <div class="card-grid">
-        <div class="stat-mini"><div class="stat-mini-label">Harga Emas Hari Ini</div><div class="stat-mini-val">Rp 1.042.000</div><div class="stat-mini-sub">per gram · ↑ 0.3%</div></div>
-        <div class="stat-mini"><div class="stat-mini-label">Emas Saya</div><div class="stat-mini-val">0.24 gram</div><div class="stat-mini-sub">≈ Rp 250.080</div></div>
-        <div class="stat-mini"><div class="stat-mini-label">Keuntungan</div><div class="stat-mini-val" style="color:#3b6d11">+Rp 12.400</div><div class="stat-mini-sub">+5.2% sejak beli</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div class="card">
-          <div class="section-title" style="font-size:14px;margin-bottom:14px">Beli Emas</div>
-          <div class="form-group">
-            <label class="form-label">Nominal Pembelian (Rp)</label>
-            <input class="form-input" type="number" placeholder="Minimum Rp 10.000" id="emas-jumlah">
-          </div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px" id="emas-gram">Setara: 0 gram</div>
-          <button class="btn btn-primary" onclick="beliEmas()">Beli Emas Sekarang</button>
-        </div>
-        <div class="card">
-          <div class="section-title" style="font-size:14px;margin-bottom:14px">Jual Emas</div>
-          <div class="form-group">
-            <label class="form-label">Jumlah Emas (gram)</label>
-            <input class="form-input" type="number" placeholder="Maksimum 0.24 gram" step="0.01" id="emas-jual">
-          </div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px" id="emas-rupiah">Setara: Rp 0</div>
-          <button class="btn btn-primary" onclick="jualEmas()">Jual Emas</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAGIHAN -->
-    <div class="section" id="sec-tagihan">
-      <div class="section-header">
-        <div class="section-title">Bayar Tagihan</div>
-        <div class="section-sub">Semua tagihan dalam satu aplikasi</div>
-      </div>
-      <div class="tagihan-grid">
-        <div class="tagihan-btn" onclick="openTagihan('Listrik PLN','Masukkan ID Pelanggan PLN')">
-          <div class="tagihan-btn-icon">⚡</div>
-          <div class="tagihan-btn-label">Listrik PLN</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('Token Listrik','Masukkan ID Meter Listrik')">
-          <div class="tagihan-btn-icon">🔌</div>
-          <div class="tagihan-btn-label">Token Listrik</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('PDAM / Air','Masukkan No. Pelanggan PDAM')">
-          <div class="tagihan-btn-icon">💧</div>
-          <div class="tagihan-btn-label">Air / PDAM</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('Internet / WiFi','Masukkan No. Pelanggan Internet')">
-          <div class="tagihan-btn-icon">🌐</div>
-          <div class="tagihan-btn-label">Internet</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('BPJS Kesehatan','Masukkan No. VA BPJS')">
-          <div class="tagihan-btn-icon">🏥</div>
-          <div class="tagihan-btn-label">BPJS Kesehatan</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('Pulsa & Paket Data','Masukkan No. HP')">
-          <div class="tagihan-btn-icon">📱</div>
-          <div class="tagihan-btn-label">Pulsa & Data</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('TV Kabel','Masukkan No. Pelanggan TV')">
-          <div class="tagihan-btn-icon">📺</div>
-          <div class="tagihan-btn-label">TV Kabel</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('SPP Sekolah','Masukkan NIS / No. VA Sekolah')">
-          <div class="tagihan-btn-icon">🎓</div>
-          <div class="tagihan-btn-label">SPP Sekolah</div>
-        </div>
-        <div class="tagihan-btn" onclick="openTagihan('E-Wallet (GoPay/OVO/DANA)','Masukkan No. HP E-Wallet')">
-          <div class="tagihan-btn-icon">👜</div>
-          <div class="tagihan-btn-label">E-Wallet</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIWAYAT -->
-    <div class="section" id="sec-riwayat">
-      <div class="section-header">
-        <div class="section-title">Riwayat Transaksi</div>
-        <div class="section-sub">Semua aktivitas rekening</div>
-      </div>
-      <div class="card">
-        <div class="tx-list" id="tx-all"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- MODAL TRANSFER KONFIRMASI -->
-<div class="modal-overlay" id="modal-transfer">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('modal-transfer')">✕</button>
-    <div class="modal-title">Konfirmasi Transfer</div>
-    <div style="background:var(--bg);border-radius:12px;padding:16px;margin-bottom:20px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:13px;color:var(--muted)">Kepada</span>
-        <span style="font-size:13px;font-weight:700" id="conf-nama">-</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:13px;color:var(--muted)">Jumlah</span>
-        <span style="font-size:13px;font-weight:700" id="conf-jumlah">-</span>
-      </div>
-      <div style="display:flex;justify-content:space-between">
-        <span style="font-size:13px;color:var(--muted)">Biaya Admin</span>
-        <span style="font-size:13px;font-weight:700">Rp 0</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">PIN Transaksi (masukkan 6 angka bebas)</label>
-      <input class="form-input" type="password" maxlength="6" placeholder="••••••" id="pin-input">
-    </div>
-    <button class="btn btn-primary" onclick="konfirmasiTransfer()">Konfirmasi Transfer</button>
-  </div>
-</div>
-
-<!-- MODAL REKSA DANA -->
-<div class="modal-overlay" id="modal-rd">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('modal-rd')">✕</button>
-    <div class="modal-title" id="rd-modal-title">Beli Reksa Dana</div>
-    <div style="background:var(--bg);border-radius:12px;padding:14px;margin-bottom:16px;font-size:13px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-        <span style="color:var(--muted)">Produk</span>
-        <span style="font-weight:700" id="rd-modal-nama">-</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-        <span style="color:var(--muted)">Return/tahun</span>
-        <span style="font-weight:700;color:#3b6d11" id="rd-modal-return">-</span>
-      </div>
-      <div style="display:flex;justify-content:space-between">
-        <span style="color:var(--muted)">Profil Risiko</span>
-        <span style="font-weight:700" id="rd-modal-risiko">-</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Jumlah Pembelian (Rp)</label>
-      <input class="form-input" type="number" placeholder="Minimum Rp 10.000" id="rd-jumlah">
-    </div>
-    <button class="btn btn-primary" onclick="beliRD()">Beli Sekarang</button>
-  </div>
-</div>
-
-<!-- MODAL TAGIHAN -->
-<div class="modal-overlay" id="modal-tagihan">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('modal-tagihan')">✕</button>
-    <div class="modal-title" id="tagihan-modal-title">Bayar Tagihan</div>
-    <div class="form-group">
-      <label class="form-label" id="tagihan-modal-label">ID Pelanggan</label>
-      <input class="form-input" type="text" id="tagihan-id" placeholder="Masukkan nomor">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Jumlah Pembayaran (Rp)</label>
-      <input class="form-input" type="number" placeholder="Masukkan jumlah" id="tagihan-jumlah">
-    </div>
-    <button class="btn btn-primary" onclick="bayarTagihan()">Bayar Sekarang</button>
-  </div>
 </div>
 
 <!-- NOTIFIKASI -->
-<div class="notif" id="notif">✅ Transaksi berhasil!</div>
+
+<div class="notif" id="notif"></div>
 
 <script>
+
+/* ================= DATA ================= */
+
 var saldo = 2450000;
-var rdNama = '', rdReturn = '', rdRisiko = '';
-var tagihanNama = '';
-var tfNama = '', tfJumlah = 0;
 
 var txData = [
-  {type:'in', icon:'💰', name:'Top Up Via BCA', date:'27 Mei 2026, 09.15', amount:500000},
-  {type:'out', icon:'💸', name:'Transfer ke Rizky Pratama', date:'26 Mei 2026, 14.30', amount:-150000},
-  {type:'bill', icon:'⚡', name:'Bayar Listrik PLN', date:'25 Mei 2026, 11.00', amount:-250000},
-  {type:'in', icon:'📈', name:'Hasil Reksa Dana', date:'24 Mei 2026, 08.00', amount:32500},
-  {type:'bill', icon:'📱', name:'Pulsa Telkomsel', date:'23 Mei 2026, 16.45', amount:-50000},
-  {type:'out', icon:'💸', name:'Transfer ke Dewi Anggraeni', date:'22 Mei 2026, 13.00', amount:-200000},
-  {type:'bill', icon:'🌐', name:'Bayar Internet Indihome', date:'21 Mei 2026, 10.30', amount:-300000},
-  {type:'in', icon:'💰', name:'Top Up Via Mandiri', date:'20 Mei 2026, 09.00', amount:1000000},
+    {
+        type:'in',
+        name:'Top Up Awal',
+        date:'Hari ini',
+        amount:500000
+    }
 ];
 
-function formatRp(n){return 'Rp '+Math.abs(n).toLocaleString('id-ID')}
+/* ================= FORMAT ================= */
 
-function renderTx(id, limit){
-  var el = document.getElementById(id);
-  var list = limit ? txData.slice(0,limit) : txData;
-  el.innerHTML = list.map(function(t){
-    return '<div class="tx-item"><div class="tx-icon '+t.type+'">'+t.icon+'</div><div class="tx-info"><div class="tx-name">'+t.name+'</div><div class="tx-date">'+t.date+'</div></div><div class="tx-amount '+(t.amount>0?'in':'out')+'">'+(t.amount>0?'+':'')+formatRp(t.amount)+'</div></div>';
-  }).join('');
+function formatRp(n){
+    return 'Rp ' + Math.abs(n).toLocaleString('id-ID');
 }
+
+/* ================= RENDER ================= */
+
+function renderTx(id){
+
+    var el = document.getElementById(id);
+
+    el.innerHTML = txData.map(function(t){
+
+        return `
+        <div class="tx-item">
+
+            <div>
+                <div class="tx-name">${t.name}</div>
+                <div class="tx-date">${t.date}</div>
+            </div>
+
+            <div class="tx-amount ${t.amount > 0 ? 'in' : 'out'}">
+                ${t.amount > 0 ? '+' : '-'}${formatRp(t.amount)}
+            </div>
+
+        </div>
+        `;
+
+    }).join('');
+
+}
+
+/* ================= UPDATE SALDO ================= */
 
 function updateSaldo(){
-  document.getElementById('saldo-display').textContent = 'Rp '+saldo.toLocaleString('id-ID');
+    document.getElementById('saldo-display').textContent =
+    'Rp ' + saldo.toLocaleString('id-ID');
 }
+
+/* ================= SECTION ================= */
 
 function showSection(id){
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
-  document.getElementById('sec-'+id).classList.add('active');
-  event.currentTarget && event.currentTarget.classList && event.currentTarget.classList.add('active');
-  var items = document.querySelectorAll('.nav-item');
-  items.forEach(function(ni){if(ni.textContent.trim().toLowerCase().indexOf(id.toLowerCase())>=0||ni.getAttribute('onclick').indexOf(id)>=0)ni.classList.add('active')});
+
+    document.querySelectorAll('.section')
+    .forEach(function(sec){
+        sec.classList.remove('active');
+    });
+
+    document.getElementById('sec-' + id)
+    .classList.add('active');
+
 }
 
-function showNotif(msg){
-  var n = document.getElementById('notif');
-  n.textContent = msg;
-  n.style.display = 'block';
-  setTimeout(function(){n.style.display='none'},3000);
+/* ================= NOTIF ================= */
+
+function showNotif(text){
+
+    var notif = document.getElementById('notif');
+
+    notif.innerText = text;
+
+    notif.style.display = 'block';
+
+    setTimeout(function(){
+        notif.style.display = 'none';
+    },3000);
+
 }
 
-function closeModal(id){document.getElementById(id).classList.remove('show')}
-
-function fillTransfer(nama, norek){
-  document.getElementById('tf-norek').value = norek;
-  document.getElementById('tf-nama').value = nama;
-}
+/* ================= TRANSFER ================= */
 
 function doTransfer(){
-  var nama = document.getElementById('tf-nama').value;
-  var jumlah = parseInt(document.getElementById('tf-jumlah').value);
-  if(!nama||!jumlah||jumlah<=0){alert('Lengkapi data transfer!');return}
-  if(jumlah>saldo){alert('Saldo tidak mencukupi!');return}
-  tfNama = nama; tfJumlah = jumlah;
-  document.getElementById('conf-nama').textContent = nama;
-  document.getElementById('conf-jumlah').textContent = formatRp(jumlah);
-  document.getElementById('modal-transfer').classList.add('show');
+
+    var nama = document.getElementById('tf-nama').value;
+
+    var jumlah = parseInt(
+        document.getElementById('tf-jumlah').value
+    );
+
+    if(!nama || !jumlah){
+        alert('Lengkapi data!');
+        return;
+    }
+
+    if(jumlah > saldo){
+        alert('Saldo tidak cukup!');
+        return;
+    }
+
+    saldo -= jumlah;
+
+    updateSaldo();
+
+    txData.unshift({
+        type:'out',
+        name:'Transfer ke ' + nama,
+        date:'Baru saja',
+        amount:-jumlah
+    });
+
+    renderTx('tx-home');
+    renderTx('tx-all');
+
+    showNotif('Transfer berhasil!');
+
 }
 
-function konfirmasiTransfer(){
-  var pin = document.getElementById('pin-input').value;
-  if(pin.length < 6){alert('PIN harus 6 angka!');return}
-  saldo -= tfJumlah;
-  updateSaldo();
-  txData.unshift({type:'out',icon:'💸',name:'Transfer ke '+tfNama,date:'Baru saja',amount:-tfJumlah});
-  renderTx('tx-home',5);renderTx('tx-all');
-  closeModal('modal-transfer');
-  showNotif('✅ Transfer Rp '+tfJumlah.toLocaleString('id-ID')+' ke '+tfNama+' berhasil!');
-  document.getElementById('tf-nama').value='';
-  document.getElementById('tf-jumlah').value='';
-  document.getElementById('pin-input').value='';
-}
-
-function setTopup(n){document.getElementById('tu-jumlah').value=n}
+/* ================= TOPUP ================= */
 
 function doTopup(){
-  var jml = parseInt(document.getElementById('tu-jumlah').value);
-  if(!jml||jml<10000){alert('Minimum top up Rp 10.000!');return}
-  saldo += jml;
-  updateSaldo();
-  txData.unshift({type:'in',icon:'💰',name:'Top Up Saldo',date:'Baru saja',amount:jml});
-  renderTx('tx-home',5);renderTx('tx-all');
-  showNotif('✅ Top Up '+formatRp(jml)+' berhasil!');
-  document.getElementById('tu-jumlah').value='';
+
+    var jumlah = parseInt(
+        document.getElementById('tu-jumlah').value
+    );
+
+    if(!jumlah){
+        alert('Masukkan jumlah!');
+        return;
+    }
+
+    saldo += jumlah;
+
+    updateSaldo();
+
+    txData.unshift({
+        type:'in',
+        name:'Top Up Saldo',
+        date:'Baru saja',
+        amount:jumlah
+    });
+
+    renderTx('tx-home');
+    renderTx('tx-all');
+
+    showNotif('Top Up berhasil!');
+
 }
 
-function setTarik(n){document.getElementById('tt-jumlah').value=n}
+/* ================= LOGIN CHECK ================= */
 
-function doTarik(){
-  var jml = parseInt(document.getElementById('tt-jumlah').value);
-  if(!jml||jml<50000){alert('Minimum penarikan Rp 50.000!');return}
-  if(jml>saldo){alert('Saldo tidak mencukupi!');return}
-  saldo -= jml;
-  updateSaldo();
-  var kode = Math.floor(100000+Math.random()*900000).toString();
-  document.getElementById('kode-tarik').textContent = kode;
-  document.getElementById('kode-tarik-card').style.display='block';
-  txData.unshift({type:'out',icon:'🏧',name:'Tarik Tunai',date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
-  showNotif('✅ Kode penarikan berhasil dibuat!');
+const loggedInUser = localStorage.getItem("loggedInUser");
+
+if(loggedInUser){
+
+    document.getElementById("guestMenu").style.display = "none";
+
+    document.getElementById("userMenu").style.display = "flex";
+
+    document.getElementById("usernameDisplay").textContent =
+    loggedInUser;
+
+    document.getElementById("avatarDisplay").textContent =
+    loggedInUser.charAt(0).toUpperCase();
+
+}else{
+
+    document.getElementById("guestMenu").style.display = "flex";
+
+    document.getElementById("userMenu").style.display = "none";
+
 }
 
-function openRD(nama, type, ret, risiko){
-  rdNama=nama; rdReturn=ret; rdRisiko=risiko;
-  document.getElementById('rd-modal-title').textContent = 'Beli '+nama;
-  document.getElementById('rd-modal-nama').textContent = nama;
-  document.getElementById('rd-modal-return').textContent = '+'+ret+'%';
-  document.getElementById('rd-modal-risiko').textContent = risiko;
-  document.getElementById('modal-rd').classList.add('show');
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    localStorage.removeItem("loggedInUser");
+
+    alert("Logout berhasil!");
+
+    location.reload();
+
 }
 
-function beliRD(){
-  var jml = parseInt(document.getElementById('rd-jumlah').value);
-  if(!jml||jml<10000){alert('Minimum pembelian Rp 10.000!');return}
-  if(jml>saldo){alert('Saldo tidak mencukupi!');return}
-  saldo -= jml;
-  updateSaldo();
-  txData.unshift({type:'bill',icon:'📈',name:'Beli Reksa Dana '+rdNama,date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
-  closeModal('modal-rd');
-  showNotif('✅ Pembelian Reksa Dana berhasil!');
-  document.getElementById('rd-jumlah').value='';
-}
+/* ================= INIT ================= */
 
-function beliEmas(){
-  var jml = parseInt(document.getElementById('emas-jumlah').value);
-  if(!jml||jml<10000){alert('Minimum pembelian Rp 10.000!');return}
-  if(jml>saldo){alert('Saldo tidak mencukupi!');return}
-  saldo -= jml;
-  updateSaldo();
-  txData.unshift({type:'bill',icon:'🥇',name:'Beli Tabungan Emas',date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
-  showNotif('✅ Pembelian Emas berhasil!');
-  document.getElementById('emas-jumlah').value='';
-  document.getElementById('emas-gram').textContent='Setara: 0 gram';
-}
+updateSaldo();
 
-function jualEmas(){
-  var gram = parseFloat(document.getElementById('emas-jual').value);
-  if(!gram||gram<=0){alert('Masukkan jumlah gram!');return}
-  var nominal = Math.round(gram * 1042000);
-  saldo += nominal;
-  updateSaldo();
-  txData.unshift({type:'in',icon:'🥇',name:'Jual Tabungan Emas',date:'Baru saja',amount:nominal});
-  renderTx('tx-home',5);renderTx('tx-all');
-  showNotif('✅ Penjualan Emas berhasil! +'+formatRp(nominal));
-  document.getElementById('emas-jual').value='';
-  document.getElementById('emas-rupiah').textContent='Setara: Rp 0';
-}
+renderTx('tx-home');
 
-document.getElementById('emas-jumlah').addEventListener('input',function(){
-  var g = (parseInt(this.value)||0)/1042000;
-  document.getElementById('emas-gram').textContent='Setara: '+g.toFixed(4)+' gram';
-});
-document.getElementById('emas-jual').addEventListener('input',function(){
-  var r = Math.round((parseFloat(this.value)||0)*1042000);
-  document.getElementById('emas-rupiah').textContent='Setara: Rp '+r.toLocaleString('id-ID');
-});
-
-function openTagihan(nama, label){
-  tagihanNama = nama;
-  document.getElementById('tagihan-modal-title').textContent = 'Bayar '+nama;
-  document.getElementById('tagihan-modal-label').textContent = label;
-  document.getElementById('modal-tagihan').classList.add('show');
-}
-
-function bayarTagihan(){
-  var id = document.getElementById('tagihan-id').value;
-  var jml = parseInt(document.getElementById('tagihan-jumlah').value);
-  if(!id||!jml||jml<=0){alert('Lengkapi data tagihan!');return}
-  if(jml>saldo){alert('Saldo tidak mencukupi!');return}
-  saldo -= jml;
-  updateSaldo();
-  txData.unshift({type:'bill',icon:'🧾',name:'Bayar '+tagihanNama,date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
-  closeModal('modal-tagihan');
-  showNotif('✅ Pembayaran '+tagihanNama+' berhasil!');
-  document.getElementById('tagihan-id').value='';
-  document.getElementById('tagihan-jumlah').value='';
-}
-
-document.querySelectorAll('.modal-overlay').forEach(function(m){
-  m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show')});
-});
-
-renderTx('tx-home',5);
 renderTx('tx-all');
+
 </script>
+
 </body>
 </html>
-                    
