@@ -833,9 +833,38 @@ document.querySelectorAll('.modal-overlay').forEach(function(m){
 
 renderTx('tx-home',5);
 renderTx('tx-all');
+  <script>
+
+// Ambil user login dari localStorage
+const currentUser = localStorage.getItem("loggedInUser");
+
+// Cek apakah user sudah login
+if(currentUser){
+
+    // Sembunyikan tombol login & register
+    document.getElementById("guestMenu").style.display = "none";
+
+    // Tampilkan menu user
+    document.getElementById("userMenu").style.display = "flex";
+
+    // Tampilkan username
+    document.getElementById("usernameDisplay").textContent = currentUser;
+
+    // Avatar huruf pertama
+    document.getElementById("avatarDisplay").textContent =
+        currentUser.charAt(0).toUpperCase();
+}
+
+// Logout
+function logout(){
+    localStorage.removeItem("loggedInUser");
+
+    alert("Logout berhasil!");
+
+    window.location.reload();
+}
+
 </script>
 </body>
 </html>
 
-tolong ubah kodingan itu jadi benar seperti yg saya maksud dan berikan kode utuhnya ke saya
-                    
