@@ -3,701 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Delayota Banking</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --blue-50:#e6f1fb;
-  --blue-100:#b5d4f4;
-  --blue-200:#85b7eb;
-  --blue-400:#378add;
-  --blue-600:#185fa5;
-  --blue-800:#0c447c;
-  --blue-900:#042c53;
-
-  --bg:#f0f4f8;
-  --white:#ffffff;
-  --text:#0c1a2e;
-  --muted:#5a7080;
-  --border:#dce6ee;
+  --blue-50:#e6f1fb;--blue-100:#b5d4f4;--blue-200:#85b7eb;--blue-400:#378add;--blue-600:#185fa5;--blue-800:#0c447c;--blue-900:#042c53;
+  --bg:#f0f4f8;--white:#ffffff;--text:#0c1a2e;--muted:#5a7080;--border:#dce6ee;
 }
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-body{
-    font-family:'Plus Jakarta Sans',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-}
-
-/* ================= TOPBAR ================= */
-
-.topbar{
-    background:var(--blue-900);
-    color:#fff;
-    padding:12px 24px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.topbar-logo{
-    font-size:22px;
-    font-weight:800;
-}
-
-.topbar-logo span{
-    color:var(--blue-200);
-}
-
-.topbar-user{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
+.topbar{background:var(--blue-900);color:#fff;padding:10px 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar-logo{font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#fff}
+.topbar-logo span{color:var(--blue-200)}
+.topbar-user{display:flex;align-items:center;gap:12px;font-size:13px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--blue-400);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
 
 .top-btn{
-    background:#378add;
-    color:white;
-    border:none;
-    padding:8px 14px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
+  background:#378add;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
 }
 
 .top-btn.register{
-    background:#185fa5;
+  background:#185fa5;
 }
 
 .top-btn:hover{
-    opacity:.9;
+  opacity:.9;
 }
 
-.avatar{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:#378add;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-    color:white;
-}
-
-/* ================= APP ================= */
-
-.app{
-    display:flex;
-    min-height:calc(100vh - 60px);
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-    width:220px;
-    background:white;
-    border-right:1px solid var(--border);
-    padding:20px 0;
-}
-
-.nav-label{
-    font-size:11px;
-    color:var(--muted);
-    font-weight:700;
-    margin:14px 20px 8px;
-}
-
-.nav-item{
-    padding:12px 20px;
-    cursor:pointer;
-    display:flex;
-    gap:10px;
-    align-items:center;
-    font-size:14px;
-    transition:.2s;
-}
-
-.nav-item:hover{
-    background:var(--blue-50);
-}
-
-.nav-item.active{
-    background:var(--blue-50);
-    color:var(--blue-800);
-    font-weight:700;
-}
-
-/* ================= CONTENT ================= */
-
-.content{
-    flex:1;
-    padding:24px;
-}
-
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
-
-/* ================= SALDO ================= */
-
-.saldo-card{
-    background:linear-gradient(135deg,var(--blue-800),var(--blue-600));
-    color:white;
-    padding:28px;
-    border-radius:20px;
-    margin-bottom:24px;
-}
-
-.saldo-label{
-    font-size:13px;
-    opacity:.8;
-}
-
-.saldo-amount{
-    font-size:36px;
-    font-weight:800;
-    margin-top:10px;
-}
-
-/* ================= CARD ================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    border:1px solid var(--border);
-    padding:20px;
-}
-
-.card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px;
-    margin-bottom:20px;
-}
-
-.stat-mini{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-}
-
-.stat-mini-label{
-    font-size:12px;
-    color:var(--muted);
-}
-
-.stat-mini-val{
-    font-size:24px;
-    font-weight:800;
-    margin-top:8px;
-}
-
-.stat-mini-sub{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:6px;
-}
-
-/* ================= QUICK MENU ================= */
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
-    margin-bottom:20px;
-}
-
-.quick-btn{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:18px;
-    cursor:pointer;
-    text-align:center;
-    transition:.2s;
-}
-
-.quick-btn:hover{
-    background:var(--blue-50);
-}
-
-.quick-btn-icon{
-    font-size:28px;
-}
-
-.quick-btn-label{
-    margin-top:10px;
-    font-size:13px;
-    font-weight:700;
-}
-
-/* ================= TRANSAKSI ================= */
-
-.tx-list{
-    margin-top:12px;
-}
-
-.tx-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.tx-name{
-    font-size:14px;
-    font-weight:700;
-}
-
-.tx-date{
-    font-size:12px;
-    color:var(--muted);
-}
-
-.tx-amount{
-    font-weight:700;
-}
-
-.in{
-    color:green;
-}
-
-.out{
-    color:red;
-}
-
-/* ================= NOTIF ================= */
-
-.notif{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:var(--blue-800);
-    color:white;
-    padding:14px 20px;
-    border-radius:10px;
-    display:none;
-}
-
+.app{display:flex;min-height:calc(100vh - 46px)}
+.sidebar{width:220px;background:var(--white);border-right:1px solid var(--border);padding:20px 0;flex-shrink:0}
+.nav-section{padding:0 12px;margin-bottom:8px}
+.nav-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:0 12px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);transition:all .15s;margin-bottom:2px}
+.nav-item:hover{background:var(--blue-50);color:var(--blue-600)}
+.nav-item.active{background:var(--blue-50);color:var(--blue-800);font-weight:600}
+.nav-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.nav-item.active .nav-icon{background:var(--blue-400);color:#fff}
+.content{flex:1;padding:24px;overflow-y:auto}
+.section{display:none}
+.section.active{display:block}
+.card{background:var(--white);border-radius:16px;border:1px solid var(--border);padding:20px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.saldo-card{background:linear-gradient(135deg,var(--blue-800),var(--blue-600));border-radius:20px;padding:24px;color:#fff;position:relative;overflow:hidden;margin-bottom:20px}
+.saldo-card::after{content:'';position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.07)}
+.saldo-label{font-size:12px;opacity:.8;margin-bottom:6px;font-weight:500}
+.saldo-amount{font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.quick-btn{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
+.quick-btn:hover{border-color:var(--blue-400);background:var(--blue-50);transform:translateY(-2px)}
+.quick-btn-icon{width:44px;height:44px;border-radius:12px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;font-size:20px}
+.quick-btn-label{font-size:11px;font-weight:600;color:var(--text);text-align:center}
+.stat-mini{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px}
+.stat-mini-label{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:6px}
+.stat-mini-val{font-size:22px;font-weight:800;color:var(--blue-800)}
+.stat-mini-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.tx-list{display:flex;flex-direction:column;gap:1px}
+.tx-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.tx-item:last-child{border-bottom:none}
+.tx-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tx-icon.in{background:#eaf3de;color:#3b6d11}
+.tx-icon.out{background:#fcebeb;color:#a32d2d}
+.tx-icon.bill{background:var(--blue-50);color:var(--blue-600)}
+.tx-info{flex:1}
+.tx-name{font-size:13px;font-weight:600;color:var(--text)}
+.tx-date{font-size:11px;color:var(--muted);margin-top:2px}
+.tx-amount{font-size:14px;font-weight:700}
+.tx-amount.in{color:#3b6d11}
+.tx-amount.out{color:#a32d2d}
+.notif{position:fixed;top:20px;right:20px;background:var(--blue-800);color:#fff;padding:14px 20px;border-radius:12px;font-size:13px;font-weight:600;z-index:200;display:none}
 </style>
 </head>
-
 <body>
 
-<!-- ================= TOPBAR ================= -->
-
 <div class="topbar">
+  <div class="topbar-logo">Delayota <span>Banking</span></div>
 
-    <div class="topbar-logo">
-        Delayota <span>Banking</span>
+  <div class="topbar-user">
+
+    <div id="guestMenu">
+      <button onclick="window.location.href='login/index.html'" class="top-btn">
+        Login
+      </button>
+
+      <button onclick="window.location.href='login/register.html'" class="top-btn register">
+        Register
+      </button>
     </div>
 
-    <div class="topbar-user">
+    <div id="userMenu" style="display:none;align-items:center;gap:12px;">
 
-        <!-- sebelum login -->
-        <div id="guestMenu">
+      <span style="color:rgba(255,255,255,0.7);font-size:12px">
+        Selamat datang,
+      </span>
 
-            <button onclick="window.location.href='login/index.html'" class="top-btn">
-                Login
-            </button>
+      <strong id="usernameDisplay"></strong>
 
-            <button onclick="window.location.href='login/register.html'" class="top-btn register">
-                Register
-            </button>
+      <div class="avatar" id="avatarDisplay"></div>
 
-        </div>
-
-        <!-- sesudah login -->
-        <div id="userMenu" style="display:none;align-items:center;gap:12px;">
-
-            <span style="font-size:13px;color:rgba(255,255,255,.7)">
-                Selamat datang,
-            </span>
-
-            <strong id="usernameDisplay"></strong>
-
-            <div class="avatar" id="avatarDisplay"></div>
-
-            <button onclick="logout()" class="top-btn">
-                Logout
-            </button>
-
-        </div>
+      <button onclick="logout()" class="top-btn">
+        Logout
+      </button>
 
     </div>
 
+  </div>
 </div>
-
-<!-- ================= APP ================= -->
 
 <div class="app">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
+<div class="sidebar">
+<div class="nav-section">
+<div class="nav-label">Menu Utama</div>
 
-        <div class="nav-label">MENU</div>
+<div class="nav-item active" onclick="showSection('beranda')">
+<div class="nav-icon">🏠</div> Beranda
+</div>
 
-        <div class="nav-item active" onclick="showSection('beranda')">
-            🏠 Beranda
-        </div>
+<div class="nav-item" onclick="showSection('transfer')">
+<div class="nav-icon">💸</div> Transfer
+</div>
 
-        <div class="nav-item" onclick="showSection('transfer')">
-            💸 Transfer
-        </div>
+<div class="nav-item" onclick="showSection('topup')">
+<div class="nav-icon">➕</div> Top Up
+</div>
 
-        <div class="nav-item" onclick="showSection('topup')">
-            ➕ Top Up
-        </div>
+<div class="nav-item" onclick="showSection('riwayat')">
+<div class="nav-icon">📋</div> Riwayat
+</div>
 
-        <div class="nav-item" onclick="showSection('riwayat')">
-            📋 Riwayat
-        </div>
+</div>
+</div>
 
-    </div>
+<div class="content">
 
-    <!-- CONTENT -->
-    <div class="content">
+<div class="section active" id="sec-beranda">
 
-        <!-- BERANDA -->
-        <div class="section active" id="sec-beranda">
+<div class="saldo-card">
+<div class="saldo-label">Total Saldo Aktif</div>
+<div class="saldo-amount" id="saldo-display">Rp 2.450.000</div>
+</div>
 
-            <div class="saldo-card">
+<div class="card-grid">
+<div class="stat-mini">
+<div class="stat-mini-label">Pemasukan Bulan Ini</div>
+<div class="stat-mini-val">Rp 1.200.000</div>
+<div class="stat-mini-sub">↑ 12% dari bulan lalu</div>
+</div>
 
-                <div class="saldo-label">
-                    Total Saldo
-                </div>
+<div class="stat-mini">
+<div class="stat-mini-label">Pengeluaran Bulan Ini</div>
+<div class="stat-mini-val">Rp 580.000</div>
+<div class="stat-mini-sub">↓ 5% dari bulan lalu</div>
+</div>
+</div>
 
-                <div class="saldo-amount" id="saldo-display">
-                    Rp 2.450.000
-                </div>
+<div class="quick-grid">
+<div class="quick-btn" onclick="showSection('transfer')">
+<div class="quick-btn-icon">💸</div>
+<div class="quick-btn-label">Transfer</div>
+</div>
 
-            </div>
+<div class="quick-btn" onclick="showSection('topup')">
+<div class="quick-btn-icon">➕</div>
+<div class="quick-btn-label">Top Up</div>
+</div>
+</div>
 
-            <div class="card-grid">
-
-                <div class="stat-mini">
-                    <div class="stat-mini-label">Pemasukan</div>
-                    <div class="stat-mini-val">Rp 1.200.000</div>
-                    <div class="stat-mini-sub">bulan ini</div>
-                </div>
-
-                <div class="stat-mini">
-                    <div class="stat-mini-label">Pengeluaran</div>
-                    <div class="stat-mini-val">Rp 580.000</div>
-                    <div class="stat-mini-sub">bulan ini</div>
-                </div>
-
-            </div>
-
-            <div class="quick-grid">
-
-                <div class="quick-btn" onclick="showSection('transfer')">
-                    <div class="quick-btn-icon">💸</div>
-                    <div class="quick-btn-label">Transfer</div>
-                </div>
-
-                <div class="quick-btn" onclick="showSection('topup')">
-                    <div class="quick-btn-icon">➕</div>
-                    <div class="quick-btn-label">Top Up</div>
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Transaksi Terbaru</h3>
-
-                <div class="tx-list" id="tx-home"></div>
-
-            </div>
-
-        </div>
-
-        <!-- TRANSFER -->
-        <div class="section" id="sec-transfer">
-
-            <div class="card">
-
-                <h2 style="margin-bottom:18px">
-                    Transfer Dana
-                </h2>
-
-                <input type="text" id="tf-nama"
-                placeholder="Nama penerima"
-                style="width:100%;padding:12px;margin-bottom:12px">
-
-                <input type="number" id="tf-jumlah"
-                placeholder="Jumlah transfer"
-                style="width:100%;padding:12px;margin-bottom:12px">
-
-                <button onclick="doTransfer()" class="top-btn">
-                    Transfer
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- TOPUP -->
-        <div class="section" id="sec-topup">
-
-            <div class="card">
-
-                <h2 style="margin-bottom:18px">
-                    Top Up Saldo
-                </h2>
-
-                <input type="number" id="tu-jumlah"
-                placeholder="Jumlah top up"
-                style="width:100%;padding:12px;margin-bottom:12px">
-
-                <button onclick="doTopup()" class="top-btn">
-                    Top Up
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- RIWAYAT -->
-        <div class="section" id="sec-riwayat">
-
-            <div class="card">
-
-                <h2 style="margin-bottom:18px">
-                    Riwayat Transaksi
-                </h2>
-
-                <div class="tx-list" id="tx-all"></div>
-
-            </div>
-
-        </div>
-
-    </div>
+<div class="card">
+<h3 style="margin-bottom:16px">Transaksi Terbaru</h3>
+<div class="tx-list" id="tx-home"></div>
+</div>
 
 </div>
 
-<!-- NOTIFIKASI -->
+<div class="section" id="sec-transfer">
+<div class="card">
+<h2 style="margin-bottom:16px">Transfer Dana</h2>
+
+<input type="text" id="tf-nama" placeholder="Nama penerima" style="width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
+
+<input type="number" id="tf-jumlah" placeholder="Jumlah transfer" style="width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
+
+<button class="top-btn" onclick="doTransfer()">Transfer</button>
+</div>
+</div>
+
+<div class="section" id="sec-topup">
+<div class="card">
+<h2 style="margin-bottom:16px">Top Up Saldo</h2>
+
+<input type="number" id="tu-jumlah" placeholder="Jumlah Top Up" style="width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc">
+
+<button class="top-btn" onclick="doTopup()">Top Up</button>
+</div>
+</div>
+
+<div class="section" id="sec-riwayat">
+<div class="card">
+<h2 style="margin-bottom:16px">Riwayat Transaksi</h2>
+<div class="tx-list" id="tx-all"></div>
+</div>
+</div>
+
+</div>
+</div>
 
 <div class="notif" id="notif"></div>
 
 <script>
 
-/* ================= DATA ================= */
-
 var saldo = 2450000;
 
 var txData = [
-    {
-        type:'in',
-        name:'Top Up Awal',
-        date:'Hari ini',
-        amount:500000
-    }
+  {type:'in', icon:'💰', name:'Top Up Via BCA', date:'27 Mei 2026, 09.15', amount:500000},
+  {type:'out', icon:'💸', name:'Transfer ke Rizky', date:'26 Mei 2026, 14.30', amount:-150000},
+  {type:'bill', icon:'⚡', name:'Bayar Listrik', date:'25 Mei 2026, 11.00', amount:-250000}
 ];
 
-/* ================= FORMAT ================= */
-
 function formatRp(n){
-    return 'Rp ' + Math.abs(n).toLocaleString('id-ID');
+  return 'Rp '+Math.abs(n).toLocaleString('id-ID');
 }
 
-/* ================= RENDER ================= */
+function renderTx(id, limit){
 
-function renderTx(id){
+  var el = document.getElementById(id);
 
-    var el = document.getElementById(id);
+  var list = limit ? txData.slice(0,limit) : txData;
 
-    el.innerHTML = txData.map(function(t){
+  el.innerHTML = list.map(function(t){
 
-        return `
-        <div class="tx-item">
+    return '<div class="tx-item"><div class="tx-icon '+t.type+'">'+t.icon+'</div><div class="tx-info"><div class="tx-name">'+t.name+'</div><div class="tx-date">'+t.date+'</div></div><div class="tx-amount '+(t.amount>0?'in':'out')+'">'+(t.amount>0?'+':'-')+formatRp(t.amount)+'</div></div>';
 
-            <div>
-                <div class="tx-name">${t.name}</div>
-                <div class="tx-date">${t.date}</div>
-            </div>
-
-            <div class="tx-amount ${t.amount > 0 ? 'in' : 'out'}">
-                ${t.amount > 0 ? '+' : '-'}${formatRp(t.amount)}
-            </div>
-
-        </div>
-        `;
-
-    }).join('');
-
+  }).join('');
 }
-
-/* ================= UPDATE SALDO ================= */
 
 function updateSaldo(){
-    document.getElementById('saldo-display').textContent =
-    'Rp ' + saldo.toLocaleString('id-ID');
+  document.getElementById('saldo-display').textContent = 'Rp '+saldo.toLocaleString('id-ID');
 }
-
-/* ================= SECTION ================= */
 
 function showSection(id){
+  document.querySelectorAll('.section').forEach(function(s){
+    s.classList.remove('active');
+  });
 
-    document.querySelectorAll('.section')
-    .forEach(function(sec){
-        sec.classList.remove('active');
-    });
-
-    document.getElementById('sec-' + id)
-    .classList.add('active');
-
+  document.getElementById('sec-'+id).classList.add('active');
 }
 
-/* ================= NOTIF ================= */
+function showNotif(msg){
+  var n = document.getElementById('notif');
+  n.textContent = msg;
+  n.style.display = 'block';
 
-function showNotif(text){
-
-    var notif = document.getElementById('notif');
-
-    notif.innerText = text;
-
-    notif.style.display = 'block';
-
-    setTimeout(function(){
-        notif.style.display = 'none';
-    },3000);
-
+  setTimeout(function(){
+    n.style.display='none';
+  },3000);
 }
-
-/* ================= TRANSFER ================= */
 
 function doTransfer(){
 
-    var nama = document.getElementById('tf-nama').value;
+  var nama = document.getElementById('tf-nama').value;
+  var jumlah = parseInt(document.getElementById('tf-jumlah').value);
 
-    var jumlah = parseInt(
-        document.getElementById('tf-jumlah').value
-    );
+  if(!nama || !jumlah){
+    alert('Lengkapi data transfer!');
+    return;
+  }
 
-    if(!nama || !jumlah){
-        alert('Lengkapi data!');
-        return;
-    }
+  if(jumlah > saldo){
+    alert('Saldo tidak cukup!');
+    return;
+  }
 
-    if(jumlah > saldo){
-        alert('Saldo tidak cukup!');
-        return;
-    }
+  saldo -= jumlah;
 
-    saldo -= jumlah;
+  updateSaldo();
 
-    updateSaldo();
+  txData.unshift({
+    type:'out',
+    icon:'💸',
+    name:'Transfer ke '+nama,
+    date:'Baru saja',
+    amount:-jumlah
+  });
 
-    txData.unshift({
-        type:'out',
-        name:'Transfer ke ' + nama,
-        date:'Baru saja',
-        amount:-jumlah
-    });
+  renderTx('tx-home',5);
+  renderTx('tx-all');
 
-    renderTx('tx-home');
-    renderTx('tx-all');
-
-    showNotif('Transfer berhasil!');
-
+  showNotif('Transfer berhasil!');
 }
-
-/* ================= TOPUP ================= */
 
 function doTopup(){
 
-    var jumlah = parseInt(
-        document.getElementById('tu-jumlah').value
-    );
+  var jumlah = parseInt(document.getElementById('tu-jumlah').value);
 
-    if(!jumlah){
-        alert('Masukkan jumlah!');
-        return;
-    }
+  if(!jumlah){
+    alert('Masukkan jumlah!');
+    return;
+  }
 
-    saldo += jumlah;
+  saldo += jumlah;
 
-    updateSaldo();
+  updateSaldo();
 
-    txData.unshift({
-        type:'in',
-        name:'Top Up Saldo',
-        date:'Baru saja',
-        amount:jumlah
-    });
+  txData.unshift({
+    type:'in',
+    icon:'💰',
+    name:'Top Up Saldo',
+    date:'Baru saja',
+    amount:jumlah
+  });
 
-    renderTx('tx-home');
-    renderTx('tx-all');
+  renderTx('tx-home',5);
+  renderTx('tx-all');
 
-    showNotif('Top Up berhasil!');
-
+  showNotif('Top Up berhasil!');
 }
 
-/* ================= LOGIN CHECK ================= */
-
-const loggedInUser = localStorage.getItem("loggedInUser");
+const loggedInUser = localStorage.getItem('loggedInUser');
 
 if(loggedInUser){
 
-    document.getElementById("guestMenu").style.display = "none";
+  document.getElementById('guestMenu').style.display = 'none';
 
-    document.getElementById("userMenu").style.display = "flex";
+  document.getElementById('userMenu').style.display = 'flex';
 
-    document.getElementById("usernameDisplay").textContent =
-    loggedInUser;
+  document.getElementById('usernameDisplay').textContent = loggedInUser;
 
-    document.getElementById("avatarDisplay").textContent =
-    loggedInUser.charAt(0).toUpperCase();
+  document.getElementById('avatarDisplay').textContent = loggedInUser.charAt(0).toUpperCase();
 
 }else{
 
-    document.getElementById("guestMenu").style.display = "flex";
+  document.getElementById('guestMenu').style.display = 'flex';
 
-    document.getElementById("userMenu").style.display = "none";
-
+  document.getElementById('userMenu').style.display = 'none';
 }
-
-/* ================= LOGOUT ================= */
 
 function logout(){
 
-    localStorage.removeItem("loggedInUser");
+  localStorage.removeItem('loggedInUser');
 
-    alert("Logout berhasil!");
+  alert('Logout berhasil!');
 
-    location.reload();
-
+  location.reload();
 }
 
-/* ================= INIT ================= */
-
 updateSaldo();
-
-renderTx('tx-home');
-
+renderTx('tx-home',5);
 renderTx('tx-all');
 
 </script>
-
 </body>
 </html>
