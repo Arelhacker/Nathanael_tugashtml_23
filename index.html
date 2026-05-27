@@ -147,11 +147,30 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
   <button onclick="window.location.href='login/register.html'" class="top-btn register">
     Register
   </button>
-  <span style="color:rgba(255,255,255,0.7);font-size:12px">
-    Selamat datang,
-  </span>
-  <strong>Nathanael Arvin</strong>
-  <div class="avatar">NA</div>
+  <div class="topbar-user">
+
+  <!-- Tombol login & register -->
+  <div id="guestMenu">
+    <button onclick="window.location.href='login/index.html'" class="top-btn">
+      Login
+    </button>
+
+    <button onclick="window.location.href='login/register.html'" class="top-btn register">
+      Register
+    </button>
+  </div>
+
+  <!-- Data user setelah login -->
+  <div id="userMenu" style="display:none; align-items:center; gap:12px;">
+    <span style="color:rgba(255,255,255,0.7);font-size:12px">
+      Selamat datang,
+    </span>
+    <strong id="usernameDisplay"></strong>
+    <div class="avatar" id="avatarDisplay"></div>
+    <button onclick="logout()" class="top-btn">
+      Logout
+    </button>
+  </div>
 </div>
 </div>
 
