@@ -873,7 +873,7 @@ renderTx('tx-home',5);
 renderTx('tx-all');
 
 // Ambil user login dari localStorage
-const currentUser = localStorage.getItem("loggedInUser");
+const currentUser = localStorage.getItem("username");
 
 // Cek apakah user sudah login
 if(currentUser){
@@ -894,7 +894,7 @@ if(currentUser){
 
 // Logout
 function logout(){
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("username");
 
     alert("Logout berhasil!");
 
