@@ -749,7 +749,7 @@ function konfirmasiTransfer(){
   saldo -= tfJumlah;
   updateSaldo();
   txData.unshift({type:'out',icon:'💸',name:'Transfer ke '+tfNama,date:'Baru saja',amount:-tfJumlah});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   closeModal('modal-transfer');
   showNotif('✅ Transfer Rp '+tfJumlah.toLocaleString('id-ID')+' ke '+tfNama+' berhasil!');
   document.getElementById('tf-nama').value='';
@@ -765,7 +765,7 @@ function doTopup(){
   saldo += jml;
   updateSaldo();
   txData.unshift({type:'in',icon:'💰',name:'Top Up Saldo',date:'Baru saja',amount:jml});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   showNotif('✅ Top Up '+formatRp(jml)+' berhasil!');
   document.getElementById('tu-jumlah').value='';
 }
@@ -782,7 +782,7 @@ function doTarik(){
   document.getElementById('kode-tarik').textContent = kode;
   document.getElementById('kode-tarik-card').style.display='block';
   txData.unshift({type:'out',icon:'🏧',name:'Tarik Tunai',date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   showNotif('✅ Kode penarikan berhasil dibuat!');
 }
 
@@ -802,7 +802,7 @@ function beliRD(){
   saldo -= jml;
   updateSaldo();
   txData.unshift({type:'bill',icon:'📈',name:'Beli Reksa Dana '+rdNama,date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   closeModal('modal-rd');
   showNotif('✅ Pembelian Reksa Dana berhasil!');
   document.getElementById('rd-jumlah').value='';
@@ -815,7 +815,7 @@ function beliEmas(){
   saldo -= jml;
   updateSaldo();
   txData.unshift({type:'bill',icon:'🥇',name:'Beli Tabungan Emas',date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   showNotif('✅ Pembelian Emas berhasil!');
   document.getElementById('emas-jumlah').value='';
   document.getElementById('emas-gram').textContent='Setara: 0 gram';
@@ -828,7 +828,7 @@ function jualEmas(){
   saldo += nominal;
   updateSaldo();
   txData.unshift({type:'in',icon:'🥇',name:'Jual Tabungan Emas',date:'Baru saja',amount:nominal});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   showNotif('✅ Penjualan Emas berhasil! +'+formatRp(nominal));
   document.getElementById('emas-jual').value='';
   document.getElementById('emas-rupiah').textContent='Setara: Rp 0';
@@ -858,7 +858,7 @@ function bayarTagihan(){
   saldo -= jml;
   updateSaldo();
   txData.unshift({type:'bill',icon:'🧾',name:'Bayar '+tagihanNama,date:'Baru saja',amount:-jml});
-  renderTx('tx-home',5);renderTx('tx-all');
+  Tx('tx-home',5);Tx('tx-all');
   closeModal('modal-tagihan');
   showNotif('✅ Pembayaran '+tagihanNama+' berhasil!');
   document.getElementById('tagihan-id').value='';
@@ -869,8 +869,8 @@ document.querySelectorAll('.modal-overlay').forEach(function(m){
   m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show')});
 });
 
-renderTx('tx-home',5);
-renderTx('tx-all');
+Tx('tx-home',5);
+Tx('tx-all');
 
 // Ambil user login dari localStorage
 const currentUser = localStorage.getItem("username");
