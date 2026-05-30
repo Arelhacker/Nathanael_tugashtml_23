@@ -193,7 +193,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 </div>
 </div>
 
-<div class="app">
+  <div id="loginRequired" style="
+display:none;
+text-align:center;
+padding:100px 20px;
+">
+
+    <img src="logo.png" style="width:120px;margin-bottom:20px;">
+
+    <h1>Delayota Banking</h1>
+
+    <p style="margin-top:10px;color:#666;">
+        Silakan Login atau Register terlebih dahulu
+    </p>
+
+</div>
+
+<div id="mainApp" class="app">
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="nav-section">
@@ -875,21 +891,24 @@ Tx('tx-all');
 // Ambil user login dari localStorage
 const currentUser = localStorage.getItem("username");
 
-// Cek apakah user sudah login
 if(currentUser){
 
-    // Sembunyikan tombol login & register
-    document.getElementById("guestMenu").style.display = "none";
+    document.getElementById("loginRequired").style.display = "none";
+    document.getElementById("mainApp").style.display = "flex";
 
-    // Tampilkan menu user
+    document.getElementById("guestMenu").style.display = "none";
     document.getElementById("userMenu").style.display = "flex";
 
-    // Tampilkan username
     document.getElementById("usernameDisplay").textContent = currentUser;
 
-    // Avatar huruf pertama
     document.getElementById("avatarDisplay").textContent =
         currentUser.charAt(0).toUpperCase();
+
+}else{
+
+    document.getElementById("loginRequired").style.display = "block";
+    document.getElementById("mainApp").style.display = "none";
+
 }
 
 // Logout
