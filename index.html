@@ -133,70 +133,180 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 /* PROGRESS */
 .progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;margin-top:8px}
 .progress-fill{height:100%;background:var(--blue-400);border-radius:4px}
+
+/* ===========================
+   INFO ADMIN — REDESIGNED
+=========================== */
+.admin-hero{
+  background:linear-gradient(135deg,var(--blue-900) 0%,var(--blue-700,#1d6ebf) 100%);
+  border-radius:20px;
+  padding:36px 32px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+.admin-hero::before{
+  content:'';
+  position:absolute;
+  right:-60px;top:-60px;
+  width:220px;height:220px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.06);
+}
+.admin-hero::after{
+  content:'';
+  position:absolute;
+  right:60px;bottom:-80px;
+  width:180px;height:180px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+}
+.admin-hero-icon{
+  width:72px;height:72px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;
+  flex-shrink:0;
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,0.2);
+}
+.admin-hero-text h2{
+  font-size:22px;font-weight:800;margin-bottom:6px;
+}
+.admin-hero-text p{
+  font-size:13px;opacity:.75;line-height:1.6;max-width:420px;
+}
+
+.admin-contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:24px;
+}
+
+.admin-contact-card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:18px;
+  padding:24px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+}
+.admin-contact-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:3px;
+  border-radius:0 0 18px 18px;
+  opacity:0;
+  transition:opacity .2s;
+}
+.admin-contact-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(12,68,124,0.12);
+  border-color:var(--card-accent,var(--blue-400));
+}
+.admin-contact-card:hover::after{opacity:1}
+
+.admin-contact-card.yt{--card-accent:#ff0000}
+.admin-contact-card.yt::after{background:#ff0000}
+.admin-contact-card.yt:hover .admin-contact-icon{background:#fff0f0;color:#cc0000}
+
+.admin-contact-card.maps{--card-accent:#34a853}
+.admin-contact-card.maps::after{background:#34a853}
+.admin-contact-card.maps:hover .admin-contact-icon{background:#f0faf3;color:#1e7a37}
+
+.admin-contact-card.wa{--card-accent:#25d366}
+.admin-contact-card.wa::after{background:#25d366}
+.admin-contact-card.wa:hover .admin-contact-icon{background:#f0fdf6;color:#128c4a}
+
+.admin-contact-icon{
+  width:56px;height:56px;
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  transition:background .2s, color .2s;
+}
+.admin-contact-card.yt .admin-contact-icon{background:#fff5f5;}
+.admin-contact-card.maps .admin-contact-icon{background:#f2faf4;}
+.admin-contact-card.wa .admin-contact-icon{background:#f0fdf5;}
+
+.admin-contact-label{
+  font-size:14px;font-weight:700;color:var(--text);
+  text-align:center;
+}
+.admin-contact-desc{
+  font-size:11px;color:var(--muted);
+  text-align:center;line-height:1.5;
+}
+.admin-contact-arrow{
+  font-size:11px;font-weight:700;
+  color:var(--card-accent,var(--blue-400));
+  display:flex;align-items:center;gap:4px;
+  margin-top:4px;
+}
+
+.admin-info-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+}
+.admin-info-card h3{
+  font-size:15px;font-weight:800;color:var(--blue-900);
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.admin-info-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.admin-info-row:last-child{border-bottom:none;padding-bottom:0}
+.admin-info-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--blue-400);
+  margin-top:5px;flex-shrink:0;
+}
+.admin-info-row strong{color:var(--blue-900);display:block;margin-bottom:2px}
+.admin-info-row span{color:var(--muted)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-
-  <div class="topbar-logo">
-    Delayota <span>Banking</span>
-  </div>
-
+  <div class="topbar-logo">Delayota <span>Banking</span></div>
   <div class="topbar-user">
-
-    <!-- MENU SEBELUM LOGIN -->
     <div id="guestMenu">
-
-      <button onclick="window.location.href='login/index.html'" class="top-btn">
-        Login
-      </button>
-
-      <button onclick="window.location.href='login/register.html'" class="top-btn register">
-        Register
-      </button>
-
+      <button onclick="window.location.href='login/index.html'" class="top-btn">Login</button>
+      <button onclick="window.location.href='login/register.html'" class="top-btn register">Register</button>
     </div>
-
-    <!-- MENU SETELAH LOGIN -->
-    <div id="userMenu" style="display:none; align-items:center; gap:12px;">
-
-      <span style="color:rgba(255,255,255,0.7);font-size:12px">
-        Selamat datang,
-      </span>
-
+    <div id="userMenu" style="display:none;align-items:center;gap:12px;">
+      <span style="color:rgba(255,255,255,0.7);font-size:12px">Selamat datang,</span>
       <strong id="usernameDisplay"></strong>
-
       <div class="avatar" id="avatarDisplay"></div>
-
-      <button onclick="logout()" class="">
-        Logout
-      </button>
-
+      <button onclick="logout()">Logout</button>
     </div>
-
   </div>
-
 </div>
 
-  <!-- Data user setelah login -->
-</div>
-</div>
-
-  <div id="loginRequired" style="
-display:none;
-text-align:center;
-padding:100px 20px;
-">
-
-    <img src="logo.png" style="width:120px;margin-bottom:20px;">
-
-    <h1>Delayota Banking</h1>
-
-    <p style="margin-top:10px;color:#666;">
-        Silakan login atau register terlebih dahulu (klik pojok kanan atas)
-    </p>
-
+<div id="loginRequired" style="display:none;text-align:center;padding:100px 20px;">
+  <img src="logo.png" style="width:120px;margin-bottom:20px;">
+  <h1>Delayota Banking</h1>
+  <p style="margin-top:10px;color:#666;">Silakan login atau register terlebih dahulu (klik pojok kanan atas)</p>
 </div>
 
 <div id="mainApp" class="app">
@@ -235,8 +345,8 @@ padding:100px 20px;
         <div class="nav-icon">📋</div> Riwayat
       </div>
       <div class="nav-item" onclick="showSection('admin')">
-    <div class="nav-icon">📞</div> Info Admin
-</div>
+        <div class="nav-icon">📞</div> Info Admin
+      </div>
     </div>
   </div>
 
@@ -253,7 +363,6 @@ padding:100px 20px;
           <div>BIC <span>DLYTIDJA</span></div>
         </div>
       </div>
-
       <div class="card-grid">
         <div class="stat-mini">
           <div class="stat-mini-label">Pemasukan Bulan Ini</div>
@@ -276,7 +385,6 @@ padding:100px 20px;
           <div class="stat-mini-sub">Listrik & Internet</div>
         </div>
       </div>
-
       <div class="quick-grid">
         <div class="quick-btn" onclick="showSection('transfer')">
           <div class="quick-btn-icon">💸</div>
@@ -311,7 +419,6 @@ padding:100px 20px;
           <div class="quick-btn-label">Bayar SPP</div>
         </div>
       </div>
-
       <div class="card">
         <div class="section-header">
           <div>
@@ -487,34 +594,22 @@ padding:100px 20px;
         <div class="section-title" style="font-size:15px;margin-bottom:14px">Pilih Produk Reksa Dana</div>
         <div class="rd-card" onclick="openRD('Delayota Pasar Uang','Pasar Uang','6.2','Rendah')">
           <div class="rd-badge" style="background:#eaf3de">💵</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Pasar Uang</div>
-            <div class="rd-type">Pasar Uang · Risiko Rendah</div>
-          </div>
+          <div class="rd-info"><div class="rd-name">Delayota Pasar Uang</div><div class="rd-type">Pasar Uang · Risiko Rendah</div></div>
           <div class="rd-return"><div class="rd-pct">+6.2%</div><div class="rd-period">per tahun</div></div>
         </div>
         <div class="rd-card" onclick="openRD('Delayota Obligasi Negara','Obligasi','8.7','Sedang')">
           <div class="rd-badge" style="background:var(--blue-50)">📜</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Obligasi Negara</div>
-            <div class="rd-type">Obligasi · Risiko Sedang</div>
-          </div>
+          <div class="rd-info"><div class="rd-name">Delayota Obligasi Negara</div><div class="rd-type">Obligasi · Risiko Sedang</div></div>
           <div class="rd-return"><div class="rd-pct">+8.7%</div><div class="rd-period">per tahun</div></div>
         </div>
         <div class="rd-card" onclick="openRD('Delayota Saham Unggulan','Saham','12.4','Tinggi')">
           <div class="rd-badge" style="background:#faeeda">📊</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Saham Unggulan</div>
-            <div class="rd-type">Saham · Risiko Tinggi</div>
-          </div>
+          <div class="rd-info"><div class="rd-name">Delayota Saham Unggulan</div><div class="rd-type">Saham · Risiko Tinggi</div></div>
           <div class="rd-return"><div class="rd-pct">+12.4%</div><div class="rd-period">per tahun</div></div>
         </div>
         <div class="rd-card" onclick="openRD('Delayota Campuran','Campuran','9.8','Sedang')">
           <div class="rd-badge" style="background:#fcebeb">🥗</div>
-          <div class="rd-info">
-            <div class="rd-name">Delayota Campuran</div>
-            <div class="rd-type">Campuran · Risiko Sedang</div>
-          </div>
+          <div class="rd-info"><div class="rd-name">Delayota Campuran</div><div class="rd-type">Campuran · Risiko Sedang</div></div>
           <div class="rd-return"><div class="rd-pct">+9.8%</div><div class="rd-period">per tahun</div></div>
         </div>
       </div>
@@ -561,40 +656,31 @@ padding:100px 20px;
       </div>
       <div class="tagihan-grid">
         <div class="tagihan-btn" onclick="openTagihan('Listrik PLN','Masukkan ID Pelanggan PLN')">
-          <div class="tagihan-btn-icon">⚡</div>
-          <div class="tagihan-btn-label">Listrik PLN</div>
+          <div class="tagihan-btn-icon">⚡</div><div class="tagihan-btn-label">Listrik PLN</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('Token Listrik','Masukkan ID Meter Listrik')">
-          <div class="tagihan-btn-icon">🔌</div>
-          <div class="tagihan-btn-label">Token Listrik</div>
+          <div class="tagihan-btn-icon">🔌</div><div class="tagihan-btn-label">Token Listrik</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('PDAM / Air','Masukkan No. Pelanggan PDAM')">
-          <div class="tagihan-btn-icon">💧</div>
-          <div class="tagihan-btn-label">Air / PDAM</div>
+          <div class="tagihan-btn-icon">💧</div><div class="tagihan-btn-label">Air / PDAM</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('Internet / WiFi','Masukkan No. Pelanggan Internet')">
-          <div class="tagihan-btn-icon">🌐</div>
-          <div class="tagihan-btn-label">Internet</div>
+          <div class="tagihan-btn-icon">🌐</div><div class="tagihan-btn-label">Internet</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('BPJS Kesehatan','Masukkan No. VA BPJS')">
-          <div class="tagihan-btn-icon">🏥</div>
-          <div class="tagihan-btn-label">BPJS Kesehatan</div>
+          <div class="tagihan-btn-icon">🏥</div><div class="tagihan-btn-label">BPJS Kesehatan</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('Pulsa & Paket Data','Masukkan No. HP')">
-          <div class="tagihan-btn-icon">📱</div>
-          <div class="tagihan-btn-label">Pulsa & Data</div>
+          <div class="tagihan-btn-icon">📱</div><div class="tagihan-btn-label">Pulsa & Data</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('TV Kabel','Masukkan No. Pelanggan TV')">
-          <div class="tagihan-btn-icon">📺</div>
-          <div class="tagihan-btn-label">TV Kabel</div>
+          <div class="tagihan-btn-icon">📺</div><div class="tagihan-btn-label">TV Kabel</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('SPP Sekolah','Masukkan NIS / No. VA Sekolah')">
-          <div class="tagihan-btn-icon">🎓</div>
-          <div class="tagihan-btn-label">SPP Sekolah</div>
+          <div class="tagihan-btn-icon">🎓</div><div class="tagihan-btn-label">SPP Sekolah</div>
         </div>
         <div class="tagihan-btn" onclick="openTagihan('E-Wallet (GoPay/OVO/DANA)','Masukkan No. HP E-Wallet')">
-          <div class="tagihan-btn-icon">👜</div>
-          <div class="tagihan-btn-label">E-Wallet</div>
+          <div class="tagihan-btn-icon">👜</div><div class="tagihan-btn-label">E-Wallet</div>
         </div>
       </div>
     </div>
@@ -610,42 +696,81 @@ padding:100px 20px;
       </div>
     </div>
 
-  </div>
-</div>
-  <!-- INFO ADMIN -->
-<div class="section" id="sec-admin">
+    <!-- INFO ADMIN — REDESIGNED -->
+    <div class="section" id="sec-admin">
 
-    <div class="section-header">
-        <div>
-            <div class="section-title">Info Admin</div>
-            <div class="section-sub">Hubungi Admin Delayota Banking</div>
+      <!-- Hero Banner -->
+      <div class="admin-hero">
+        <div class="admin-hero-icon">🏦</div>
+        <div class="admin-hero-text">
+          <h2>Hubungi Admin Delayota Banking</h2>
+          <p>Tim kami siap membantu Anda. Pilih saluran komunikasi yang paling nyaman untuk Anda gunakan di bawah ini.</p>
         </div>
+      </div>
+
+      <!-- 3 Contact Cards -->
+      <div class="admin-contact-grid">
+
+        <a class="admin-contact-card yt"
+           href="https://youtube.com/@smanegeri8yogyakartaoffici881?si=S0hIISHSzONCsCLM"
+           target="_blank" rel="noopener">
+          <div class="admin-contact-icon">▶️</div>
+          <div class="admin-contact-label">YouTube</div>
+          <div class="admin-contact-desc">Tonton video tutorial, panduan fitur, dan informasi terbaru dari Delayota Banking.</div>
+          <div class="admin-contact-arrow">Kunjungi Channel →</div>
+        </a>
+
+        <a class="admin-contact-card maps"
+           href="https://maps.app.goo.gl/3ibhQbSxkre2jEo6A"
+           target="_blank" rel="noopener">
+          <div class="admin-contact-icon">📍</div>
+          <div class="admin-contact-label">Google Maps</div>
+          <div class="admin-contact-desc">Temukan lokasi kantor kami dan dapatkan petunjuk arah menuju cabang terdekat.</div>
+          <div class="admin-contact-arrow">Buka Peta →</div>
+        </a>
+
+        <a class="admin-contact-card wa"
+           href="https://wa.me/6281252124299"
+           target="_blank" rel="noopener">
+          <div class="admin-contact-icon">💬</div>
+          <div class="admin-contact-label">WhatsApp Admin</div>
+          <div class="admin-contact-desc">Chat langsung dengan admin kami. Respons cepat untuk pertanyaan dan kendala akun.</div>
+          <div class="admin-contact-arrow">Chat Sekarang →</div>
+        </a>
+
+      </div>
+
+      <!-- Info Tambahan -->
+      <div class="admin-info-card">
+        <h3>ℹ️ Informasi Layanan</h3>
+        <div class="admin-info-row">
+          <div class="admin-info-dot"></div>
+          <div>
+            <strong>Jam Operasional</strong>
+            <span>Senin – Jumat, 08.00 – 16.00 WIB · Sabtu 08.00 – 12.00 WIB</span>
+          </div>
+        </div>
+        <div class="admin-info-row">
+          <div class="admin-info-dot"></div>
+          <div>
+            <strong>WhatsApp Admin</strong>
+            <span>+62 812-5212-4299 · Balas dalam 1–2 jam kerja</span>
+          </div>
+        </div>
+        <div class="admin-info-row">
+          <div class="admin-info-dot"></div>
+          <div>
+            <strong>Darurat & Pemblokiran Akun</strong>
+            <span>Hubungi WhatsApp di atas dengan subjek "DARURAT" untuk penanganan prioritas.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <!-- END INFO ADMIN -->
 
-    <div class="card">
-
-        <button class="btn btn-primary"
-        onclick="window.open('https://youtube.com/@smanegeri8yogyakartaoffici881?si=S0hIISHSzONCsCLM')">
-            📺 YouTube
-        </button>
-
-        <br><br>
-
-        <button class="btn btn-primary"
-        onclick="window.open('https://maps.app.goo.gl/3ibhQbSxkre2jEo6A')">
-            📍 Google Maps
-        </button>
-
-        <br><br>
-
-        <button class="btn btn-primary"
-        onclick="window.location.href='https://wa.me/6281252124299'">
-            📞 WhatsApp Admin
-        </button>
-
-    </div>
-
-</div>
+  </div><!-- end .content -->
+</div><!-- end #mainApp -->
 
 <!-- MODAL TRANSFER KONFIRMASI -->
 <div class="modal-overlay" id="modal-transfer">
@@ -756,9 +881,11 @@ function showSection(id){
   document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
   document.getElementById('sec-'+id).classList.add('active');
-  event.currentTarget && event.currentTarget.classList && event.currentTarget.classList.add('active');
   var items = document.querySelectorAll('.nav-item');
-  items.forEach(function(ni){if(ni.textContent.trim().toLowerCase().indexOf(id.toLowerCase())>=0||ni.getAttribute('onclick').indexOf(id)>=0)ni.classList.add('active')});
+  items.forEach(function(ni){
+    if(ni.getAttribute('onclick') && ni.getAttribute('onclick').indexOf("'"+id+"'")>=0)
+      ni.classList.add('active');
+  });
 }
 
 function showNotif(msg){
@@ -915,39 +1042,26 @@ document.querySelectorAll('.modal-overlay').forEach(function(m){
 Tx('tx-home',5);
 Tx('tx-all');
 
-// Ambil user login dari localStorage
-const currentUser = localStorage.getItem("username");
+// Auth check
+var currentUser = localStorage.getItem("username");
 
 if(currentUser){
-
-    document.getElementById("loginRequired").style.display = "none";
-    document.getElementById("mainApp").style.display = "flex";
-
-    document.getElementById("guestMenu").style.display = "none";
-    document.getElementById("userMenu").style.display = "flex";
-
-    document.getElementById("usernameDisplay").textContent = currentUser;
-
-    document.getElementById("avatarDisplay").textContent =
-        currentUser.charAt(0).toUpperCase();
-
+  document.getElementById("loginRequired").style.display = "none";
+  document.getElementById("mainApp").style.display = "flex";
+  document.getElementById("guestMenu").style.display = "none";
+  document.getElementById("userMenu").style.display = "flex";
+  document.getElementById("usernameDisplay").textContent = currentUser;
+  document.getElementById("avatarDisplay").textContent = currentUser.charAt(0).toUpperCase();
 }else{
-
-    document.getElementById("loginRequired").style.display = "block";
-    document.getElementById("mainApp").style.display = "none";
-
+  document.getElementById("loginRequired").style.display = "block";
+  document.getElementById("mainApp").style.display = "none";
 }
 
-// Logout
 function logout(){
-    localStorage.removeItem("username");
-
-    alert("Logout berhasil!");
-
-    window.location.reload();
+  localStorage.removeItem("username");
+  alert("Logout berhasil!");
+  window.location.reload();
 }
-
 </script>
 </body>
 </html>
-
