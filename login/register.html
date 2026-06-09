@@ -286,9 +286,7 @@
     .show-pw:hover { color: var(--blue); }
 
     /* Password strength */
-    .pw-strength {
-      margin-top: 8px;
-    }
+    .pw-strength { margin-top: 8px; }
 
     .pw-bar {
       height: 4px;
@@ -305,16 +303,10 @@
       transition: width 0.3s, background 0.3s;
     }
 
-    .pw-text {
-      font-size: 12px;
-      color: #9AA5B4;
-    }
+    .pw-text { font-size: 12px; color: #9AA5B4; }
 
     /* PIN input */
-    .pin-wrap {
-      display: flex;
-      gap: 10px;
-    }
+    .pin-wrap { display: flex; gap: 10px; }
 
     .pin-wrap input {
       flex: 1;
@@ -372,10 +364,7 @@
     .alert.show    { display: block; }
 
     /* ─── BUTTONS ─── */
-    .btn-row {
-      display: flex;
-      gap: 12px;
-    }
+    .btn-row { display: flex; gap: 12px; }
 
     .btn-secondary {
       flex: 1;
@@ -412,6 +401,12 @@
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 28px rgba(26,86,219,0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .btn-primary .btn-shine {
@@ -521,7 +516,7 @@
   <div class="steps" id="stepsBar">
     <div class="step active" data-step="1">
       <div class="step-circle" id="sc1">1</div>
-      <div class="step-label">Data Diri</div>
+      <div class="step-label">Akun</div>
     </div>
     <div class="step" data-step="2">
       <div class="step-circle" id="sc2">2</div>
@@ -542,30 +537,22 @@
 <div class="main">
   <div class="card">
 
-    <!-- STEP 1: Data Diri -->
+    <!-- STEP 1: Akun -->
     <div class="form-step active" id="step1">
       <div class="card-header">
-        <div class="step-title">📋 Data Diri</div>
-        <div class="step-desc">Isi informasi pribadi Anda untuk membuka rekening</div>
+        <div class="step-title">👤 Data Akun</div>
+        <div class="step-desc">Buat username untuk masuk ke Delayota Banking</div>
       </div>
       <div class="card-body">
         <div class="alert error" id="alert1"></div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="namaDepan">Nama Depan <span class="req">*</span></label>
-            <div class="input-wrap">
-              <span class="input-icon">👤</span>
-              <input type="text" id="namaDepan" placeholder="Budi" />
-            </div>
+        <div class="field">
+          <label for="username">Username <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="username" placeholder="Contoh: budisantoso123" autocomplete="username" />
           </div>
-          <div class="field">
-            <label for="namaBelakang">Nama Belakang <span class="req">*</span></label>
-            <div class="input-wrap">
-              <span class="input-icon">👤</span>
-              <input type="text" id="namaBelakang" placeholder="Santoso" />
-            </div>
-          </div>
+          <div class="field-hint">Username digunakan untuk login. Gunakan huruf, angka, atau underscore.</div>
         </div>
 
         <div class="field">
@@ -782,7 +769,7 @@
       <div class="success-title">Pendaftaran Berhasil!</div>
       <div class="success-desc">
         Selamat! Akun Delayota Banking Anda telah berhasil dibuat.<br>
-        Berikut adalah informasi rekening Anda:
+        Silakan login menggunakan username dan kata sandi Anda.
       </div>
       <div class="info-card" id="successInfo"></div>
       <button class="btn-primary" style="width:100%;padding:16px;font-size:15px;" onclick="window.location.href='index.html'">
@@ -796,8 +783,6 @@
 
 <script>
   let currentStep = 1;
-  const totalSteps = 4;
-
   const formData = {};
 
   /* ── Step Navigation ── */
@@ -817,10 +802,10 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function showAlert(id, msg) {
+  function showAlert(id, msg, type = 'error') {
     const el = document.getElementById(id);
     el.textContent = msg;
-    el.classList.add('show');
+    el.className = `alert ${type} show`;
     setTimeout(() => el.classList.remove('show'), 4000);
   }
 
@@ -838,15 +823,16 @@
   /* ── Validation ── */
   function validateStep(step) {
     if (step === 1) {
-      const nd = document.getElementById('namaDepan').value.trim();
-      const nb = document.getElementById('namaBelakang').value.trim();
+      const username = document.getElementById('username').value.trim();
       const nik = document.getElementById('nik').value.trim();
       const tgl = document.getElementById('tglLahir').value;
       const jk  = document.getElementById('jenisKelamin').value;
-      if (!nd || !nb)      { showAlert('alert1', '⚠️ Nama depan dan belakang wajib diisi.'); return false; }
-      if (!/^\d{16}$/.test(nik)) { showAlert('alert1', '⚠️ NIK harus 16 digit angka.'); return false; }
-      if (!tgl)            { showAlert('alert1', '⚠️ Tanggal lahir wajib diisi.'); return false; }
-      if (!jk)             { showAlert('alert1', '⚠️ Pilih jenis kelamin.'); return false; }
+      if (!username)               { showAlert('alert1', '⚠️ Username wajib diisi.'); return false; }
+      if (username.length < 3)     { showAlert('alert1', '⚠️ Username minimal 3 karakter.'); return false; }
+      if (!/^[a-zA-Z0-9_]+$/.test(username)) { showAlert('alert1', '⚠️ Username hanya boleh huruf, angka, dan underscore.'); return false; }
+      if (!/^\d{16}$/.test(nik))   { showAlert('alert1', '⚠️ NIK harus 16 digit angka.'); return false; }
+      if (!tgl)                    { showAlert('alert1', '⚠️ Tanggal lahir wajib diisi.'); return false; }
+      if (!jk)                     { showAlert('alert1', '⚠️ Pilih jenis kelamin.'); return false; }
     }
     if (step === 2) {
       const email  = document.getElementById('email').value.trim();
@@ -871,8 +857,7 @@
 
   function collectStep(step) {
     if (step === 1) {
-      formData.namaDepan   = document.getElementById('namaDepan').value.trim();
-      formData.namaBelakang= document.getElementById('namaBelakang').value.trim();
+      formData.username    = document.getElementById('username').value.trim();
       formData.nik         = document.getElementById('nik').value.trim();
       formData.tglLahir    = document.getElementById('tglLahir').value;
       formData.jenisKelamin= document.getElementById('jenisKelamin').value;
@@ -886,6 +871,7 @@
       formData.kodePos= document.getElementById('kodePos').value.trim() || '-';
     }
     if (step === 3) {
+      formData.password = document.getElementById('password').value;
       formData.pin = ['pin1','pin2','pin3','pin4','pin5','pin6'].map(id => document.getElementById(id).value).join('');
     }
   }
@@ -893,7 +879,7 @@
   /* ── Summary ── */
   function buildSummary() {
     const rows = [
-      ['Nama Lengkap', `${formData.namaDepan} ${formData.namaBelakang}`],
+      ['Username', formData.username],
       ['NIK', formData.nik],
       ['Tanggal Lahir', new Date(formData.tglLahir).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})],
       ['Email', formData.email],
@@ -906,12 +892,11 @@
     ).join('');
   }
 
-  /* ── Submit ── */
+  /* ── Submit — kirim ke API ── */
   async function submitForm() {
-    const agreeTerms = document.getElementById('agreeTerms').checked;
-    const agreeData  = document.getElementById('agreeData').checked;
-    const agreeAge   = document.getElementById('agreeAge').checked;
-    if (!agreeTerms || !agreeData || !agreeAge) {
+    if (!document.getElementById('agreeTerms').checked ||
+        !document.getElementById('agreeData').checked  ||
+        !document.getElementById('agreeAge').checked) {
       showAlert('alert4', '⚠️ Centang semua persetujuan untuk melanjutkan.');
       return;
     }
@@ -923,35 +908,54 @@
     sp.style.display = 'inline-block';
     txt.textContent = 'Mendaftarkan...';
 
-    await new Promise(r => setTimeout(r, 2000));
+    try {
+      const res = await fetch('https://herisusanta.my.id/javalogin/api/auth.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `action=register`
+          + `&username=${encodeURIComponent(formData.username)}`
+          + `&email=${encodeURIComponent(formData.email)}`
+          + `&password=${encodeURIComponent(formData.password)}`
+      });
 
-    // Generate fake rekening number
-    const noRek = '4501-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(1000 + Math.random() * 9000);
-    formData.noRek = noRek;
+      const data = await res.json();
 
-    // Show success screen
-    document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-    document.getElementById('successScreen').style.display = 'block';
+      if (data.status === 'success') {
+        // Tampilkan layar sukses
+        document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+        document.getElementById('successScreen').style.display = 'block';
 
-    const infoRows = [
-      ['Nama Nasabah', `${formData.namaDepan} ${formData.namaBelakang}`],
-      ['Nomor Rekening', noRek],
-      ['Email', formData.email],
-      ['Nomor HP', formData.noHp],
-      ['Saldo Awal', 'Rp 0'],
-    ];
-    document.getElementById('successInfo').innerHTML = infoRows.map(([l,v]) =>
-      `<div class="info-row"><span class="lbl">${l}</span><span class="val">${v}</span></div>`
-    ).join('');
+        document.getElementById('successInfo').innerHTML = [
+          ['Username', formData.username],
+          ['Email', formData.email],
+          ['Nomor HP', formData.noHp],
+          ['Saldo Awal', 'Rp 0'],
+        ].map(([l,v]) =>
+          `<div class="info-row"><span class="lbl">${l}</span><span class="val">${v}</span></div>`
+        ).join('');
 
-    // Update progress bar all done
-    document.querySelectorAll('.step').forEach(el => {
-      el.classList.add('done');
-      el.classList.remove('active');
-      el.querySelector('.step-circle').textContent = '✓';
-    });
+        document.querySelectorAll('.step').forEach(el => {
+          el.classList.add('done');
+          el.classList.remove('active');
+          el.querySelector('.step-circle').textContent = '✓';
+        });
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      } else {
+        // Tampilkan pesan error dari server (misal: username sudah dipakai)
+        showAlert('alert4', '❌ ' + (data.message || 'Pendaftaran gagal. Coba lagi.'));
+        btn.disabled = false;
+        sp.style.display = 'none';
+        txt.textContent = '🎉 Daftar Sekarang';
+      }
+
+    } catch (err) {
+      showAlert('alert4', '⚠️ Gagal terhubung ke server. Periksa koneksi internet Anda.');
+      btn.disabled = false;
+      sp.style.display = 'none';
+      txt.textContent = '🎉 Daftar Sekarang';
+    }
   }
 
   /* ── Password Strength ── */
@@ -979,7 +983,7 @@
   }
 
   /* ── Toggle Password ── */
-  function togglePw(id, btn) {
+  function togglePw(id) {
     const inp = document.getElementById(id);
     inp.type = inp.type === 'password' ? 'text' : 'password';
   }
