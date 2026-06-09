@@ -552,7 +552,7 @@
             <span class="input-icon">👤</span>
             <input type="text" id="username" placeholder="Contoh: budisantoso123" autocomplete="username" />
           </div>
-          <div class="field-hint">Username digunakan untuk login. Gunakan huruf, angka, atau underscore.</div>
+          <div class="field-hint">Username digunakan untuk login.</div>
         </div>
 
         <div class="field">
@@ -685,7 +685,7 @@
           <label for="password">Kata Sandi <span class="req">*</span></label>
           <div class="input-wrap">
             <span class="input-icon">🔒</span>
-            <input type="password" id="password" placeholder="Minimal 8 karakter" oninput="checkStrength(this.value)" />
+            <input type="password" id="password" placeholder="Masukkan kata sandi" oninput="checkStrength(this.value)" />
             <button type="button" class="show-pw" onclick="togglePw('password', this)">👁️</button>
           </div>
           <div class="pw-strength">
@@ -822,39 +822,96 @@
 
   /* ── Validation ── */
   function validateStep(step) {
-    if (step === 1) {
-      const username = document.getElementById('username').value.trim();
-      const nik = document.getElementById('nik').value.trim();
-      const tgl = document.getElementById('tglLahir').value;
-      const jk  = document.getElementById('jenisKelamin').value;
-      if (!username)               { showAlert('alert1', '⚠️ Username wajib diisi.'); return false; }
-      if (username.length < 3)     { showAlert('alert1', '⚠️ Username minimal 3 karakter.'); return false; }
-      if (!/^[a-zA-Z0-9_]+$/.test(username)) { showAlert('alert1', '⚠️ Username hanya boleh huruf, angka, dan underscore.'); return false; }
-      if (!/^\d{16}$/.test(nik))   { showAlert('alert1', '⚠️ NIK harus 16 digit angka.'); return false; }
-      if (!tgl)                    { showAlert('alert1', '⚠️ Tanggal lahir wajib diisi.'); return false; }
-      if (!jk)                     { showAlert('alert1', '⚠️ Pilih jenis kelamin.'); return false; }
+  if (step === 1) {
+    const username = document.getElementById('username').value.trim();
+    const nik = document.getElementById('nik').value.trim();
+    const tgl = document.getElementById('tglLahir').value;
+    const jk = document.getElementById('jenisKelamin').value;
+
+    // Username bebas, cukup tidak boleh kosong
+    if (!username) {
+      showAlert('alert1', '⚠️ Username wajib diisi.');
+      return false;
     }
-    if (step === 2) {
-      const email  = document.getElementById('email').value.trim();
-      const noHp   = document.getElementById('noHp').value.trim();
-      const alamat = document.getElementById('alamat').value.trim();
-      const kota   = document.getElementById('kota').value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAlert('alert2', '⚠️ Masukkan alamat email yang valid.'); return false; }
-      if (!/^08\d{8,11}$/.test(noHp)) { showAlert('alert2', '⚠️ Nomor HP tidak valid (harus diawali 08).'); return false; }
-      if (!alamat) { showAlert('alert2', '⚠️ Alamat wajib diisi.'); return false; }
-      if (!kota)   { showAlert('alert2', '⚠️ Kota wajib diisi.'); return false; }
+
+    if (!/^\d{16}$/.test(nik)) {
+      showAlert('alert1', '⚠️ NIK harus 16 digit angka.');
+      return false;
     }
-    if (step === 3) {
-      const pw  = document.getElementById('password').value;
-      const cpw = document.getElementById('confirmPassword').value;
-      if (pw.length < 8) { showAlert('alert3', '⚠️ Kata sandi minimal 8 karakter.'); return false; }
-      if (pw !== cpw)    { showAlert('alert3', '⚠️ Konfirmasi kata sandi tidak cocok.'); return false; }
-      const pin = ['pin1','pin2','pin3','pin4','pin5','pin6'].map(id => document.getElementById(id).value).join('');
-      if (!/^\d{6}$/.test(pin)) { showAlert('alert3', '⚠️ PIN harus 6 digit angka.'); return false; }
+
+    if (!tgl) {
+      showAlert('alert1', '⚠️ Tanggal lahir wajib diisi.');
+      return false;
     }
-    return true;
+
+    if (!jk) {
+      showAlert('alert1', '⚠️ Pilih jenis kelamin.');
+      return false;
+    }
   }
 
+  if (step === 2) {
+    const email = document.getElementById('email').value.trim();
+    const noHp = document.getElementById('noHp').value.trim();
+    const alamat = document.getElementById('alamat').value.trim();
+    const kota = document.getElementById('kota').value.trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showAlert('alert2', '⚠️ Masukkan alamat email yang valid.');
+      return false;
+    }
+
+    if (!/^08\d{8,11}$/.test(noHp)) {
+      showAlert('alert2', '⚠️ Nomor HP tidak valid (harus diawali 08).');
+      return false;
+    }
+
+    if (!alamat) {
+      showAlert('alert2', '⚠️ Alamat wajib diisi.');
+      return false;
+    }
+
+    if (!kota) {
+      showAlert('alert2', '⚠️ Kota wajib diisi.');
+      return false;
+    }
+  }
+
+  if (step === 3) {
+    const pw = document.getElementById('password').value;
+    const cpw = document.getElementById('confirmPassword').value;
+
+    // Password bebas, cukup tidak boleh kosong
+    if (!pw) {
+      showAlert('alert3', '⚠️ Kata sandi wajib diisi.');
+      return false;
+    }
+
+    // Konfirmasi password tetap harus sama
+    if (pw !== cpw) {
+      showAlert('alert3', '⚠️ Konfirmasi kata sandi tidak cocok.');
+      return false;
+    }
+
+    const pin = [
+      'pin1',
+      'pin2',
+      'pin3',
+      'pin4',
+      'pin5',
+      'pin6'
+    ]
+      .map(id => document.getElementById(id).value)
+      .join('');
+
+    if (!/^\d{6}$/.test(pin)) {
+      showAlert('alert3', '⚠️ PIN harus 6 digit angka.');
+      return false;
+    }
+  }
+
+  return true;
+}
   function collectStep(step) {
     if (step === 1) {
       formData.username    = document.getElementById('username').value.trim();
